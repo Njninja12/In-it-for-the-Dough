@@ -1,3 +1,9 @@
+/* =================================================
+   styles.css — Main stylesheet
+   - Base typography and layout
+   - Component sections below: Hero, Buttons, Item Cards, Responsive rules, Contact form, Footer, Navbar, Social buttons
+   Edit sections by searching these headers.
+   ================================================= */
 body {
 font-size: 1.1rem;
 line-height: 1.6;
@@ -25,6 +31,12 @@ gap: 1.5rem;
 }
 
 
+/* Buttons — reusable button styles used across the site.
+   Usage:
+   - Add class `btn` for primary buttons
+   - Add `btn secondary` for secondary color
+   - Add `btn large` for full-width or larger buttons
+*/
 .btn {
 background: #8b5e3c;
 color: white;
@@ -124,6 +136,7 @@ color: inherit;
 }
 
 
+/* Contact form — layout and spacing for the contact page form */
 .contact-container form {
 max-width: 500px;
 margin: auto;
@@ -146,6 +159,7 @@ cursor: pointer;
 button:hover {
 background: #7a4e2f;
 }
+/* Footer — site footer styles */
 footer {
 text-align: center;
 padding: 1rem;
@@ -164,6 +178,7 @@ footer a:hover {
 text-decoration: underline;
 }  
 
+/* Navbar — site header styles */
 .navbar {
   display: flex;
   align-items: center;

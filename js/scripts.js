@@ -1,3 +1,8 @@
+/* scripts.js — site JavaScript
+   - `items` contains menu categories used by item-detail.html
+   - Item detail page reads ?item= and renders content into #itemDetail
+   - Contact form integration (EmailJS) is configured below; replace placeholders with your keys
+*/
 // Item detail data (easy to expand later)
 const items = {
   breads: {
@@ -38,7 +43,10 @@ const items = {
 };
 
 
-// Load item detail page
+// --------------------------
+// Item detail rendering
+// Reads ?item= and injects content into #itemDetail
+// --------------------------
 const params = new URLSearchParams(window.location.search);
 const itemKey = params.get('item');
 
@@ -60,7 +68,12 @@ if (itemKey && items[itemKey]) {
 }
 
 
-// EmailJS contact form setup (requires free EmailJS account)
+// --------------------------
+// Contact form (EmailJS)
+// Configure your EmailJS public key, service ID and template ID below:
+// - Replace 'YOUR_PUBLIC_KEY' with your EmailJS public key
+// - Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' where they are used in sendForm
+// --------------------------
 if (document.getElementById('contactForm')) {
   if (window.emailjs && typeof emailjs.init === 'function') {
     emailjs.init('YOUR_PUBLIC_KEY');
