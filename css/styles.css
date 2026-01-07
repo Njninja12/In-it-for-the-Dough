@@ -1,7 +1,19 @@
 body {
 font-size: 1.1rem;
 line-height: 1.6;
-max-width: 600px;
+max-width: 1100px;
+margin: 0 auto;
+padding: 1rem;
+}
+
+
+/* New: two-column hero layout for desktop */
+.hero-split {
+display: grid;
+grid-template-columns: 1fr 320px;
+gap: 2rem;
+align-items: center;
+padding: 3rem;
 }
 
 
@@ -119,4 +131,27 @@ font-weight: bold;
 footer a:hover {
 text-decoration: underline;
 }  
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+}
+
+.navbar .logo {
+  max-width: 160px;
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+/* smaller logo on narrow screens */
+@media (max-width: 600px) {
+  .navbar .logo {
+    max-width: 120px;
+  }
+}
+
 /* --- END OF STYLES --- */
