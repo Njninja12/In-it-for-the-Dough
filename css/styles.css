@@ -75,20 +75,52 @@ gap: 1.5rem;
 }
 
 
+/* Updated: make item cards look like the site buttons */
 .item-card {
-background: #fff;
-padding: 1.5rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 0.75rem;
+background: #8b5e3c; /* primary button color */
+color: #fff;
+padding: 1.25rem;
 text-align: center;
 border-radius: 12px;
 text-decoration: none;
 font-weight: bold;
+transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+min-height: 120px;
 }
 
 
+/* secondary variant */
+.item-card.secondary {
+background: #c08a5b;
+}
+
+
+/* hover/focus states */
+.item-card:hover,
+.item-card:focus {
+transform: translateY(-4px);
+box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+}
+
+
+/* image sizing inside cards */
 .item-card img {
-width: 80px;
+width: 64px;
 height: auto;
-margin-bottom: 0.75rem;
+margin-bottom: 0.5rem;
+}
+
+
+/* label text */
+.item-card span {
+display: block;
+color: inherit;
 }
 
 
@@ -135,23 +167,83 @@ text-decoration: underline;
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   gap: 1rem;
-  padding: 0.5rem 0;
+  padding: 0.6rem 1rem;
+  background: #fff7f2; /* subtle warm background */
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  /* allow logo left and nav centered */
 }
 
+/* keep logo constrained */
 .navbar .logo {
-  max-width: 160px;
+  max-width: 140px;
   width: auto;
   height: auto;
   display: block;
+  margin-right: 1rem;
 }
 
-/* smaller logo on narrow screens */
-@media (max-width: 600px) {
+/* nav area fills remaining space and centers links */
+.navbar nav {
+  display: flex;
+  gap: 0.75rem;
+  flex: 1 1 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+/* make navbar links look like site buttons */
+.navbar a {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  background: #8b5e3c; /* primary color */
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* secondary style for less-prominent links (add class="secondary" in HTML if needed) */
+.navbar a.secondary {
+  background: #c08a5b;
+}
+
+/* hover and focus */
+.navbar a:hover,
+.navbar a:focus {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+  outline: none;
+}
+
+/* responsive: stack nav under logo on small screens */
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 0.6rem;
+    gap: 0.5rem;
+  }
+
   .navbar .logo {
     max-width: 120px;
+    margin-right: 0;
+  }
+
+  .navbar nav {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .navbar a {
+    width: auto;
+    padding: 0.5rem 0.9rem;
   }
 }
 
-/* --- END OF STYLES --- */
+/* ...existing code... */
