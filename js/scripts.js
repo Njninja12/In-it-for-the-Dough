@@ -47,8 +47,66 @@ const items = {
 // Item detail rendering
 // Reads ?item= and injects content into #itemDetail
 // --------------------------
-const params = new URLSearchParams(window.location.search);
-const itemKey = params.get('item');
+const detailContainer = document.getElementById("itemDetail");
+
+if (detailContainer) {
+  const params = new URLSearchParams(window.location.search);
+  const itemKey = params.get("item");
+
+  const items = {
+    cakes: {
+      name: "Classic Cakes & Cheesecakes",
+      image: "assets/birthday-cake.png",
+      description: "From birthdays to weddings, my cakes and cheesecakes are fully customizable in flavor, size, and decoration.",
+      tags: ["Custom Sizes", "Multiple Flavors", "Decorated"],
+      details: [
+        "Available in 6”, 8”, 9”, and sheet cakes",
+        "Buttercream or cream cheese frosting",
+        "Optional fillings and toppers"
+      ]
+    },
+    cookies: {
+      name: "Cookies & Bars",
+      image: "assets/cookies.png",
+      description: "Perfect for parties, gifts, or events. Soft, chewy, and baked fresh to order.",
+      tags: ["Dozens", "Party Packs"],
+      details: [
+        "Chocolate chip, sugar, oatmeal, and more",
+        "Custom mix boxes available"
+      ]
+    }
+  };
+
+  if (items[itemKey]) {
+    const item = items[itemKey];
+
+    detailContainer.innerHTML = `
+      <div class="detail-card">
+        <div class="detail-hero">
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h2>${item.name}</h2>
+            ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
+          </div>
+        </div>
+
+        <p>${item.description}</p>
+
+        <ul>
+          ${item.details.map(d => `<li>${d}</li>`).join("")}
+        </ul>
+
+        <div class="detail-actions">
+          <a href="contact.html" class="btn">Request a Custom Order</a>
+          <a href="items.html" class="btn secondary">← Back to Menu</a>
+        </div>
+      </div>
+    `;
+  } else {
+    detailContainer.innerHTML = "<p>Item not found.</p>";
+  }
+}
+
 
 if (itemKey && items[itemKey]) {
   const item = items[itemKey];

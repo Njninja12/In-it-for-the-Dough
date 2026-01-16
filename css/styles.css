@@ -316,4 +316,64 @@ text-decoration: underline;
   border: 0;
 }
 
-/* ...existing code... */
+/* =====================
+   ITEM DETAIL PAGE
+===================== */
+
+.detail-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 0 1.5rem;
+}
+
+.detail-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+
+.detail-hero {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.detail-hero img {
+  width: 120px;
+  height: 120px;
+}
+
+.detail-hero h2 {
+  margin-bottom: 0.5rem;
+}
+
+.pill {
+  display: inline-block;
+  background: #f2e8dc;
+  color: #6b4b2a;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-right: 0.5rem;
+}
+
+.detail-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.detail-actions .btn.secondary {
+  background: #eee;
+  color: #333;
+}
+
+@media (max-width: 600px) {
+  .detail-hero {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -3,25 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Item Details</title>
+<title>What I Bake | In It for the Dough</title>
 <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="detail-page">
-
+<body>
 
 <header class="navbar">
-  <img src="assets/InitfortheDoughLogo.png" class="logo" alt="Logo">
+  <img src="assets/InitfortheDoughLogo.png" class="logo" alt="In It for the Dough Logo">
   <nav>
-    <a href="items.html">← Back</a>
+    <a href="index.html">Home</a>
+    <a href="items.html">What I Bake</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
+<main class="detail-container">
+  <div id="itemDetail"></div>
+</main>
 
-<!-- Item detail placeholder — populated by js/scripts.js based on ?item= query parameter -->
-<main class="detail-container" id="itemDetail"></main>
+<footer class="footer">
+  <p>© 2026 In It for the Dough · Custom baked goods made with love</p>
+</footer>
 
-
-<!-- Scripts: handles item rendering and contact form behavior -->
-<script src="js/scripts.js"></script>
+<script src="scripts.js"></script>
 </body>
+
 </html>
