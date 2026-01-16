@@ -4,126 +4,232 @@
    - Contact form integration (EmailJS) is configured below; replace placeholders with your keys
 */
 // Item detail data (easy to expand later)
+/* --------------------------
+   Item detail data (categories + baked goods)
+   - item-detail.html uses ?item=breads (etc)
+   - each category has an array of baked goods with sizes + allergens + labels
+-------------------------- */
+
 const items = {
   breads: {
     title: "Breads",
-    description: "Sourdough, sandwich bread, banana bread, croissants, rolls, and more.",
-    servings: ["Loaf", "2 Loaves", "Party Size"],
-    allergens: ["Gluten", "Dairy", "Eggs"],
-    labels: ["Dairy Free Options", "Gluten Free Options"]
+    description: "Sourdough, sandwich bread, banana bread, rolls, and more.",
+    categoryLabels: ["Gluten Free Options", "Dairy Free Options", "Sugar Free Options"],
+    goods: [
+      {
+        name: "Sourdough Loaf",
+        description: "Classic fermented sourdough with a crisp crust and soft center.",
+        portionSizes: ["Loaf", "2 Loaves", "Party Size"],
+        allergens: ["Gluten"],
+        labels: ["Dairy Free Option"]
+      },
+      {
+        name: "Sandwich Bread",
+        description: "Soft, sliceable loaf for everyday sandwiches.",
+        portionSizes: ["Loaf", "2 Loaves", "Family Pack (3 loaves)"],
+        allergens: ["Gluten", "Dairy (optional)"],
+        labels: ["Dairy Free Option", "Sugar Free Option"]
+      },
+      {
+        name: "Banana Bread",
+        description: "Moist banana bread with optional add-ins.",
+        portionSizes: ["Loaf", "2 Loaves"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Sugar Free Option"]
+      },
+      {
+        name: "Dinner Rolls",
+        description: "Soft rolls for gatherings and holidays.",
+        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
+        allergens: ["Gluten", "Dairy", "Eggs"],
+        labels: ["Dairy Free Option"]
+      }
+    ]
   },
+
   cakes: {
-    title: "Cakes",
+    title: "Classic Cakes & Cheesecakes",
     description: "Custom cakes for birthdays, events, and celebrations.",
-    servings: ["6", "12", "24"],
-    allergens: ["Eggs", "Dairy", "Gluten"],
-    labels: []
+    categoryLabels: ["Gluten Free Options", "Sugar Free Options"],
+    goods: [
+      {
+        name: "Birthday Cake",
+        description: "Custom flavor + custom design.",
+        portionSizes: ['6" (serves ~8-10)', '8" (serves ~12-16)', '9" (serves ~18-24)', "Sheet Cake"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Gluten Free Option", "Sugar Free Option"]
+      },
+      {
+        name: "Cheesecake",
+        description: "Classic cheesecake with optional toppings.",
+        portionSizes: ['6"', '8"', '9"'],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Gluten Free Option"]
+      },
+      {
+        name: "Cupcake Cake (pull-apart)",
+        description: "A fun party option that serves like cupcakes but looks like a cake.",
+        portionSizes: ["12 Cupcakes", "24 Cupcakes", "Party Size (36+)"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Sugar Free Option"]
+      }
+    ]
   },
+
   cookies: {
     title: "Cookies",
-    description: "Classic cookies and custom flavors.",
-    servings: ["6", "12", "24"],
-    allergens: ["Peanuts", "Gluten", "Eggs"],
-    labels: ["Sugar Free Options"]
+    description: "Classic cookies and custom flavors — baked fresh to order.",
+    categoryLabels: ["Sugar Free Options", "Gluten Free Options", "Nut Free Options"],
+    goods: [
+      {
+        name: "Chocolate Chip Cookies",
+        description: "Soft and chewy classic.",
+        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Sugar Free Option", "Gluten Free Option"]
+      },
+      {
+        name: "Sugar Cookies (decorated)",
+        description: "Custom shapes + custom frosting designs.",
+        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Gluten Free Option"]
+      },
+      {
+        name: "Brownies / Bars",
+        description: "Brownies, blondies, lemon bars, and more.",
+        portionSizes: ["8x8 Pan", "9x13 Pan", "Party Tray"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Sugar Free Option"]
+      }
+    ]
   },
-  specialty: {
-    title: "Specialty Treats",
-    description: "Seasonal and specialty items made to order.",
-    servings: ["Single", "Half Dozen", "Dozen"],
-    allergens: ["Varies"],
-    labels: []
-  },
+
   cupcakes: {
     title: "Cupcakes",
     description: "Small celebration cupcakes — custom flavors and decorations.",
-    servings: ["1", "6", "12"],
-    allergens: ["Eggs", "Dairy", "Gluten"],
-    labels: []
+    categoryLabels: ["Gluten Free Options", "Sugar Free Options"],
+    goods: [
+      {
+        name: "Classic Cupcakes",
+        description: "Vanilla, chocolate, red velvet, and more.",
+        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Gluten Free Option", "Sugar Free Option"]
+      },
+      {
+        name: "Filled Cupcakes",
+        description: "Filled with custard, fruit, or ganache (varies).",
+        portionSizes: ["Half Dozen", "Dozen"],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Gluten Free Option"]
+      }
+    ]
+  },
+
+  specialty: {
+    title: "Specialty Treats",
+    description: "Seasonal and specialty items made to order.",
+    categoryLabels: ["Varies by item"],
+    goods: [
+      {
+        name: "Seasonal Treat Box",
+        description: "Assorted seasonal goodies (ask what's available).",
+        portionSizes: ["Single", "Half Dozen", "Dozen"],
+        allergens: ["Varies"],
+        labels: ["Customizable"]
+      }
+    ]
   }
 };
 
 
-// --------------------------
-// Item detail rendering
-// Reads ?item= and injects content into #itemDetail
-// --------------------------
-const detailContainer = document.getElementById("itemDetail");
+/* --------------------------
+   Item detail rendering (only runs on item-detail.html)
+-------------------------- */
 
-if (detailContainer) {
+const itemDetailEl = document.getElementById("itemDetail");
+
+if (itemDetailEl) {
   const params = new URLSearchParams(window.location.search);
   const itemKey = params.get("item");
 
-  const items = {
-    cakes: {
-      name: "Classic Cakes & Cheesecakes",
-      image: "assets/birthday-cake.png",
-      description: "From birthdays to weddings, my cakes and cheesecakes are fully customizable in flavor, size, and decoration.",
-      tags: ["Custom Sizes", "Multiple Flavors", "Decorated"],
-      details: [
-        "Available in 6”, 8”, 9”, and sheet cakes",
-        "Buttercream or cream cheese frosting",
-        "Optional fillings and toppers"
-      ]
-    },
-    cookies: {
-      name: "Cookies & Bars",
-      image: "assets/cookies.png",
-      description: "Perfect for parties, gifts, or events. Soft, chewy, and baked fresh to order.",
-      tags: ["Dozens", "Party Packs"],
-      details: [
-        "Chocolate chip, sugar, oatmeal, and more",
-        "Custom mix boxes available"
-      ]
-    }
+  const escapeHtml = (str) =>
+    String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+
+  const renderChips = (arr, chipClass) => {
+    if (!arr || !arr.length) return "";
+    return `<div class="chip-row">${arr
+      .map((x) => `<span class="chip ${chipClass}">${escapeHtml(x)}</span>`)
+      .join("")}</div>`;
   };
 
-  if (items[itemKey]) {
-    const item = items[itemKey];
+  const renderList = (arr) => {
+    if (!arr || !arr.length) return "<p class='muted'>None</p>";
+    return `<ul>${arr.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
+  };
 
-    detailContainer.innerHTML = `
-      <div class="detail-card">
-        <div class="detail-hero">
-          <img src="${item.image}" alt="${item.name}">
-          <div>
-            <h2>${item.name}</h2>
-            ${item.tags.map(tag => `<span class="pill">${tag}</span>`).join("")}
-          </div>
+  if (itemKey && items[itemKey]) {
+    const cat = items[itemKey];
+
+    itemDetailEl.innerHTML = `
+      <section class="detail-header">
+        <h2>${escapeHtml(cat.title)}</h2>
+        <p>${escapeHtml(cat.description)}</p>
+
+        <h4>Customization Options</h4>
+        ${renderChips(cat.categoryLabels, "label")}
+      </section>
+
+      <section class="goods-section">
+        <h3>Available Baked Goods</h3>
+
+        <div class="goods-grid">
+          ${cat.goods
+            .map(
+              (g) => `
+            <article class="good-card">
+              <div class="good-top">
+                <h4>${escapeHtml(g.name)}</h4>
+                <p class="muted">${escapeHtml(g.description || "")}</p>
+              </div>
+
+              <div class="good-block">
+                <h5>Portion Sizes</h5>
+                ${renderList(g.portionSizes)}
+              </div>
+
+              <div class="good-block">
+                <h5>Allergens</h5>
+                ${renderChips(g.allergens, "allergen")}
+              </div>
+
+              <div class="good-block">
+                <h5>Custom Labels</h5>
+                ${renderChips(g.labels, "label")}
+              </div>
+
+              <div class="good-actions">
+                <a class="btn" href="contact.html">Request This</a>
+                <a class="btn secondary" href="items.html">← Back to Menu</a>
+              </div>
+            </article>
+          `
+            )
+            .join("")}
         </div>
-
-        <p>${item.description}</p>
-
-        <ul>
-          ${item.details.map(d => `<li>${d}</li>`).join("")}
-        </ul>
-
-        <div class="detail-actions">
-          <a href="contact.html" class="btn">Request a Custom Order</a>
-          <a href="items.html" class="btn secondary">← Back to Menu</a>
-        </div>
-      </div>
+      </section>
     `;
   } else {
-    detailContainer.innerHTML = "<p>Item not found.</p>";
+    itemDetailEl.innerHTML = `<h2>Item not found</h2><p>Please go back to the menu.</p>`;
   }
 }
 
-
-if (itemKey && items[itemKey]) {
-  const item = items[itemKey];
-  const renderList = (arr) => (arr && arr.length ? `<ul>${arr.map(x => `<li>${x}</li>`).join('')}</ul>` : '<p>None</p>');
-  document.getElementById('itemDetail').innerHTML = `
-    <h2>${item.title}</h2>
-    <p>${item.description}</p>
-    <h4>Serving Sizes</h4>
-    ${renderList(item.servings)}
-    <h4>Allergens</h4>
-    ${renderList(item.allergens)}
-    <h4>Available Labels</h4>
-    ${renderList(item.labels)}
-  `;
-} else if (document.getElementById('itemDetail')) {
-  document.getElementById('itemDetail').innerHTML = `<h2>Item not found</h2><p>Please go back to the menu.</p>`;
-}
 
 
 // --------------------------
