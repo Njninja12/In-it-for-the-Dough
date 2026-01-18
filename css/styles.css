@@ -459,3 +459,19 @@ text-decoration: underline;
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
+/* Item detail: chips + cards + price table */
+.detail-header { margin-top: 1.5rem; padding: 1.25rem; background: #fff7f2; border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
+.goods-section { margin-top: 1.5rem; }
+.goods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.good-card { background: #fff; border-radius: 14px; padding: 1.25rem; box-shadow: 0 4px 18px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 1rem; }
+.muted { color: #6b6b6b; }
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0.75rem 0; }
+.chip { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.9rem; font-weight: 700; }
+.chip.allergen { background: #f4f4f4; color: #333; border: 1px solid rgba(0,0,0,0.08); }
+.chip.label { background: #8b5e3c; color: #fff; }
+
+.price-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+.price-table th, .price-table td { text-align: left; padding: 0.5rem 0.4rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+.price-table th { font-weight: 800; }
+.good-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.25rem; }

@@ -10,144 +10,221 @@
    - each category has an array of baked goods with sizes + allergens + labels
 -------------------------- */
 
+// Item detail data (categories -> list of items with sizes + prices + tags)
 const items = {
-  breads: {
-    title: "Breads",
-    description: "Sourdough, sandwich bread, banana bread, rolls, and more.",
-    categoryLabels: ["Gluten Free Options", "Dairy Free Options", "Sugar Free Options"],
-    goods: [
-      {
-        name: "Sourdough Loaf",
-        description: "Classic fermented sourdough with a crisp crust and soft center.",
-        portionSizes: ["Loaf", "2 Loaves", "Party Size"],
-        allergens: ["Gluten"],
-        labels: ["Dairy Free Option"]
-      },
-      {
-        name: "Sandwich Bread",
-        description: "Soft, sliceable loaf for everyday sandwiches.",
-        portionSizes: ["Loaf", "2 Loaves", "Family Pack (3 loaves)"],
-        allergens: ["Gluten", "Dairy (optional)"],
-        labels: ["Dairy Free Option", "Sugar Free Option"]
-      },
-      {
-        name: "Banana Bread",
-        description: "Moist banana bread with optional add-ins.",
-        portionSizes: ["Loaf", "2 Loaves"],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Sugar Free Option"]
-      },
-      {
-        name: "Dinner Rolls",
-        description: "Soft rolls for gatherings and holidays.",
-        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
-        allergens: ["Gluten", "Dairy", "Eggs"],
-        labels: ["Dairy Free Option"]
-      }
-    ]
-  },
-
   cakes: {
     title: "Classic Cakes & Cheesecakes",
-    description: "Custom cakes for birthdays, events, and celebrations.",
-    categoryLabels: ["Gluten Free Options", "Sugar Free Options"],
+    description: "Choose a cake/cheesecake flavor, then pick your size. Customization available.",
+    categoryLabels: ["Custom Decorations", "Gluten Free Option", "Sugar Free Option"],
     goods: [
       {
-        name: "Birthday Cake",
-        description: "Custom flavor + custom design.",
-        portionSizes: ['6" (serves ~8-10)', '8" (serves ~12-16)', '9" (serves ~18-24)', "Sheet Cake"],
+        name: "Chocolate Fudge Cake",
+        portionPrices: [{ size: "Custom cake", price: "$40–$55" }],
         allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Gluten Free Option", "Sugar Free Option"]
+        labels: ["Customizable"]
       },
       {
-        name: "Cheesecake",
-        description: "Classic cheesecake with optional toppings.",
-        portionSizes: ['6"', '8"', '9"'],
+        name: "Red Velvet Cake",
+        portionPrices: [{ size: "Custom cake", price: "$40–$55" }],
         allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Gluten Free Option"]
+        labels: ["Customizable"]
       },
       {
-        name: "Cupcake Cake (pull-apart)",
-        description: "A fun party option that serves like cupcakes but looks like a cake.",
-        portionSizes: ["12 Cupcakes", "24 Cupcakes", "Party Size (36+)"],
+        name: "Vanilla Bean Cake",
+        portionPrices: [{ size: "Custom cake", price: "$40–$55" }],
         allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Sugar Free Option"]
+        labels: ["Customizable", "Sugar Free Option"]
+      },
+      {
+        name: "Carrot Cake",
+        portionPrices: [{ size: "Custom cake", price: "$40–$55" }],
+        allergens: ["Gluten", "Eggs", "Dairy", "Tree Nuts (possible)"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Strawberry Cheesecake",
+        portionPrices: [{ size: "Cheesecake", price: "$40–$55" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable", "Gluten Free Option"]
+      },
+      {
+        name: "Chocolate Cheesecake",
+        portionPrices: [{ size: "Cheesecake", price: "$40–$55" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable", "Gluten Free Option"]
+      },
+      {
+        name: "Cheesecake (topped with fresh fruit)",
+        portionPrices: [{ size: "Cheesecake", price: "$40–$55" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable", "Gluten Free Option"]
       }
     ]
   },
 
-  cookies: {
-    title: "Cookies",
-    description: "Classic cookies and custom flavors — baked fresh to order.",
-    categoryLabels: ["Sugar Free Options", "Gluten Free Options", "Nut Free Options"],
+  breads: {
+    title: "Breads",
+    description: "Fresh baked breads — ask about available flavors and custom options.",
+    categoryLabels: ["Gluten Free Options (select items)"],
     goods: [
       {
-        name: "Chocolate Chip Cookies",
-        description: "Soft and chewy classic.",
-        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Sugar Free Option", "Gluten Free Option"]
+        name: "White or Wheat (GF)",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Varies by recipe"],
+        labels: ["Gluten Free"]
       },
       {
-        name: "Sugar Cookies (decorated)",
-        description: "Custom shapes + custom frosting designs.",
-        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
+        name: "Chocolate Zucchini / Zucchini",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
         allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Gluten Free Option"]
+        labels: ["Customizable"]
       },
       {
-        name: "Brownies / Bars",
-        description: "Brownies, blondies, lemon bars, and more.",
-        portionSizes: ["8x8 Pan", "9x13 Pan", "Party Tray"],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Sugar Free Option"]
-      }
-    ]
-  },
-
-  cupcakes: {
-    title: "Cupcakes",
-    description: "Small celebration cupcakes — custom flavors and decorations.",
-    categoryLabels: ["Gluten Free Options", "Sugar Free Options"],
-    goods: [
-      {
-        name: "Classic Cupcakes",
-        description: "Vanilla, chocolate, red velvet, and more.",
-        portionSizes: ["Half Dozen", "Dozen", "Party Pack (24)"],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Gluten Free Option", "Sugar Free Option"]
+        name: "Cranberry Bliss (GF)",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Varies by recipe"],
+        labels: ["Gluten Free"]
       },
       {
-        name: "Filled Cupcakes",
-        description: "Filled with custard, fruit, or ganache (varies).",
-        portionSizes: ["Half Dozen", "Dozen"],
+        name: "Cinnamon Swirl",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Gluten", "Eggs", "Dairy (possible)"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Lemon Poppyseed",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Gluten", "Eggs", "Dairy", "Poppyseed"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Pumpkin",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
         allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Gluten Free Option"]
+        labels: ["Customizable"]
+      },
+      {
+        name: "Blueberry (GF)",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Varies by recipe"],
+        labels: ["Gluten Free"]
+      },
+      {
+        name: "Banana",
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable", "Sugar Free Option"]
       }
     ]
   },
 
   specialty: {
     title: "Specialty Treats",
-    description: "Seasonal and specialty items made to order.",
-    categoryLabels: ["Varies by item"],
+    description: "Seasonal + specialty items. Availability can vary — message me for details!",
+    categoryLabels: ["Custom Orders Welcome"],
     goods: [
       {
-        name: "Seasonal Treat Box",
-        description: "Assorted seasonal goodies (ask what's available).",
-        portionSizes: ["Single", "Half Dozen", "Dozen"],
-        allergens: ["Varies"],
+        name: "Cinnamon Rolls",
+        portionPrices: [
+          { size: "Half Dozen", price: "$10" },
+          { size: "Full Dozen", price: "$20" }
+        ],
+        allergens: ["Gluten", "Dairy", "Eggs"],
+        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+      },
+      {
+        name: "Croissants",
+        portionPrices: [
+          { size: "Half Dozen", price: "$10" },
+          { size: "Full Dozen", price: "$20" }
+        ],
+        allergens: ["Gluten", "Dairy", "Eggs"],
+        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+      },
+      {
+        name: "Dinner Rolls",
+        portionPrices: [
+          { size: "Half Dozen", price: "$10" },
+          { size: "Full Dozen", price: "$20" }
+        ],
+        allergens: ["Gluten", "Dairy", "Eggs"],
+        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+      },
+      {
+        name: "Oreo Truffles",
+        portionPrices: [{ size: "By request", price: "Message for pricing" }],
+        allergens: ["Dairy", "Gluten (possible)"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Dipped Pretzels",
+        portionPrices: [{ size: "By request", price: "Message for pricing" }],
+        allergens: ["Gluten", "Dairy (possible)"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Cake Pops / Cake Popsicles",
+        portionPrices: [{ size: "By request", price: "Message for pricing" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable"]
+      },
+      {
+        name: "Whoopie Pies",
+        portionPrices: [{ size: "By request", price: "$15–$25" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
         labels: ["Customizable"]
       }
     ]
+  },
+
+  cupcakes: {
+    title: "Cupcakes",
+    description: "Pick your flavors, then choose your order size.",
+    categoryLabels: ["Custom Flavors", "Gluten Free Option", "Sugar Free Option"],
+    goods: [
+      {
+        name: "Chocolate",
+        portionPrices: [{ size: "Per Dozen", price: "$10–$20" }],
+        allergens: ["Gluten", "Eggs", "Dairy"],
+        labels: ["Customizable"]
+      },
+      { name: "Peanut Butter", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy", "Peanuts"], labels: ["Customizable"] },
+      { name: "Churro", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Lemon", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Strawberry", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Cookies n Creme", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Funfetti", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Red Velvet", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
+      { name: "Dark Chocolate", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] }
+    ]
+  },
+
+  cookies: {
+    title: "Cookies",
+    description: "Choose your cookie type and your order size.",
+    categoryLabels: ["All Cookies Gluten Free", "Sugar Free Option (select items)"],
+    goods: [
+      { name: "Sugar", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Chocolate Chunk", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Thumbprints", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Crinkle", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Pumpkin", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Oatmeal", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "Seven Layer", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
+      { name: "M&M's", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] }
+    ]
   }
 };
+
 
 
 /* --------------------------
    Item detail rendering (only runs on item-detail.html)
 -------------------------- */
 
+// --------------------------
+// Item detail rendering
+// --------------------------
 const itemDetailEl = document.getElementById("itemDetail");
 
 if (itemDetailEl) {
@@ -163,15 +240,26 @@ if (itemDetailEl) {
       .replaceAll("'", "&#039;");
 
   const renderChips = (arr, chipClass) => {
-    if (!arr || !arr.length) return "";
+    if (!arr || !arr.length) return "<p class='muted'>None</p>";
     return `<div class="chip-row">${arr
       .map((x) => `<span class="chip ${chipClass}">${escapeHtml(x)}</span>`)
       .join("")}</div>`;
   };
 
-  const renderList = (arr) => {
-    if (!arr || !arr.length) return "<p class='muted'>None</p>";
-    return `<ul>${arr.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul>`;
+  const renderPriceTable = (portionPrices) => {
+    if (!portionPrices || !portionPrices.length) return "<p class='muted'>Message for pricing</p>";
+    return `
+      <table class="price-table">
+        <thead><tr><th>Portion size</th><th>Price</th></tr></thead>
+        <tbody>
+          ${portionPrices
+            .map(
+              (p) => `<tr><td>${escapeHtml(p.size)}</td><td>${escapeHtml(p.price)}</td></tr>`
+            )
+            .join("")}
+        </tbody>
+      </table>
+    `;
   };
 
   if (itemKey && items[itemKey]) {
@@ -182,44 +270,42 @@ if (itemDetailEl) {
         <h2>${escapeHtml(cat.title)}</h2>
         <p>${escapeHtml(cat.description)}</p>
 
-        <h4>Customization Options</h4>
+        <h4>Category Labels</h4>
         ${renderChips(cat.categoryLabels, "label")}
       </section>
 
       <section class="goods-section">
-        <h3>Available Baked Goods</h3>
-
+        <h3>Options</h3>
         <div class="goods-grid">
           ${cat.goods
             .map(
               (g) => `
-            <article class="good-card">
-              <div class="good-top">
-                <h4>${escapeHtml(g.name)}</h4>
-                <p class="muted">${escapeHtml(g.description || "")}</p>
-              </div>
+              <article class="good-card">
+                <div class="good-top">
+                  <h4>${escapeHtml(g.name)}</h4>
+                </div>
 
-              <div class="good-block">
-                <h5>Portion Sizes</h5>
-                ${renderList(g.portionSizes)}
-              </div>
+                <div class="good-block">
+                  <h5>Portion Sizes & Prices</h5>
+                  ${renderPriceTable(g.portionPrices)}
+                </div>
 
-              <div class="good-block">
-                <h5>Allergens</h5>
-                ${renderChips(g.allergens, "allergen")}
-              </div>
+                <div class="good-block">
+                  <h5>Allergens</h5>
+                  ${renderChips(g.allergens, "allergen")}
+                </div>
 
-              <div class="good-block">
-                <h5>Custom Labels</h5>
-                ${renderChips(g.labels, "label")}
-              </div>
+                <div class="good-block">
+                  <h5>Customization Labels</h5>
+                  ${renderChips(g.labels, "label")}
+                </div>
 
-              <div class="good-actions">
-                <a class="btn" href="contact.html">Request This</a>
-                <a class="btn secondary" href="items.html">← Back to Menu</a>
-              </div>
-            </article>
-          `
+                <div class="good-actions">
+                  <a class="btn" href="contact.html">Request This</a>
+                  <a class="btn secondary" href="items.html">← Back to Menu</a>
+                </div>
+              </article>
+            `
             )
             .join("")}
         </div>
@@ -229,6 +315,7 @@ if (itemDetailEl) {
     itemDetailEl.innerHTML = `<h2>Item not found</h2><p>Please go back to the menu.</p>`;
   }
 }
+
 
 
 
