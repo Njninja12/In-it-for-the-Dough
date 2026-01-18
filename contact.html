@@ -46,12 +46,23 @@
 
 <!-- Contact form (id="contactForm") — EmailJS integration configured in js/scripts.js -->
 <form id="contactForm">
-<input type="text" name="name" placeholder="Your Name" required>
-<input type="tel" name="phone" placeholder="Phone Number" required>
-<input type="email" name="email" placeholder="Email" required>
-<textarea name="message" placeholder="Questions or custom requests" required></textarea>
+<label for="name">Name</label>
+<input type="text" name="name" placeholder="from_name" required>
+
+<label for="phone">Phone Number</label>
+<input type="tel" name="phone" placeholder="phone_number" required>
+
+<label for="email">Email</label>
+<input type="email" name="email" placeholder="reply_to" required>
+
+<label for="message">Questions or custom requests</label>
+<textarea name="message" placeholder="message" rows="5" required></textarea>
+
 <button type="submit">Send Message</button>
 </form>
+
+
+<p class="form-status" id="formStatus"></p>
 </main>
 
 
