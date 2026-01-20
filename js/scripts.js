@@ -325,18 +325,36 @@ if (itemDetailEl) {
 // - Replace 'YOUR_PUBLIC_KEY' with your EmailJS public key
 // - Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' where they are used in sendForm
 // --------------------------
-if (document.getElementById('contactForm')) {
-  if (window.emailjs && typeof emailjs.init === 'function') {
-    emailjs.init('YOUR_PUBLIC_KEY');
-  }
-  document.getElementById('contactForm').addEventListener('submit', function(e) {
+
+(function () {
+  // EmailJS Public Key is here:
+  emailjs.init("ghlIhVPe555cmjCSd");
+})();
+
+const conactForm= document.getElementById("contactForm");
+const formStatus= document.getElementById("formStatus");
+
+if (contactForm) {
+  contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    if (!window.emailjs || typeof emailjs.sendForm !== 'function') {
-      alert('Email service is not available right now.');
-      return;
+
+    if (formStatus) {
+      formStatus.textContent = "Sending...";
     }
-    emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
-      .then(() => alert('Message sent successfully!'))
-      .catch(() => alert('Error sending message.'));
+
+    emailjs
+      .sendForm('service_uz73kd3', 'template_li1j57b', this)
+      .then(() => {
+        if (formStatus) {
+          formStatus.textContent = "Message sent! I'll get back to you soon.";
+        }
+        contactForm.reset();
+      })
+      .catch(() => {
+        console.error("EmailJS Error:", error);
+        if (formStatus) {
+          formStatus.textContent = "Something went wrong. Please try again or message me on instagram.";
+        }
+      });
   });
 }
