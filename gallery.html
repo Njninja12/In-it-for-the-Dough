@@ -8,7 +8,9 @@
 </head>
 <body>
     
-
+<!-- ====================================================================
+     HEADER / NAVIGATION — Edit links here
+     ===================================================================== -->
 <header class="navbar">
     <img src="assets/InitfortheDoughLogo.png" alt="In It for the Dough Logo" class="logo">
     <nav>
@@ -25,25 +27,44 @@
     <p class="muted">A rotating collection of customs, seasonal bakes, and favorites.</p>
   </div>
 
+  <!-- ====================================================================
+       GALLERY GRID — Grid of baked goods images with lightbox
+       
+       HOW THIS WORKS:
+       - Each image is wrapped in a <figure> with class="gallery-item"
+       - Clicking any image opens it in a lightbox modal (large preview)
+       - The lightbox is controlled by JavaScript in scripts.js
+       - setupGalleryLightbox() function handles all interactions
+       
+       TO ADD IMAGES:
+       1. Add a new <figure class="gallery-item"> block
+       2. Add <img> with src pointing to your image in assets/gallery/
+       3. Add <figcaption> with the image title
+       
+       IMAGE REQUIREMENTS:
+       - Store images in assets/gallery/ folder
+       - Use loading="lazy" for better performance
+       - Provide good alt text for accessibility
+       ===================================================================== -->
   <div class="gallery-grid" id="galleryGrid">
-    <!-- Add / remove images anytime -->
+    <!-- Each gallery item: image + caption — Add / remove items anytime -->
     <figure class="gallery-item">
-      <img src="assets/gallery/breads.jpg" alt="Fresh baked breads" loading="lazy">
+      <img src="assets/gallery/Breads.jpg" alt="Fresh baked breads" loading="lazy">
       <figcaption>Breads</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/whitebread.jpg" alt="White bread loaves" loading="lazy">
+      <img src="assets/gallery/WhiteBread.jpg" alt="White bread loaves" loading="lazy">
       <figcaption>White Bread</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/cinnamonrolls.jpg" alt="Cinnamon rolls with frosting" loading="lazy">
+      <img src="assets/gallery/CinnamonRolls.jpg" alt="Cinnamon rolls with frosting" loading="lazy">
       <figcaption>Cinnamon Rolls</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/brownies.jpg" alt="Fudgy brownies" loading="lazy">
+      <img src="assets/gallery/Brownies.jpg" alt="Fudgy brownies" loading="lazy">
       <figcaption>Brownies</figcaption>
     </figure>
 
@@ -58,38 +79,57 @@
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/poppyseed.jpg" alt="Lemon poppyseed loaf" loading="lazy">
+      <img src="assets/gallery/Poppyseed.jpg" alt="Lemon poppyseed loaf" loading="lazy">
       <figcaption>Lemon Poppyseed</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/macadamia.jpg" alt="White chocolate macadamia cookies" loading="lazy">
+      <img src="assets/gallery/Macadamia.jpg" alt="White chocolate macadamia cookies" loading="lazy">
       <figcaption>Macadamia Cookies</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/chocchipbread.jpg" alt="Chocolate chip bread loaf" loading="lazy">
+      <img src="assets/gallery/ChocolateChipBread.jpg" alt="Chocolate chip bread loaf" loading="lazy">
       <figcaption>Chocolate Chip Bread</figcaption>
     </figure>
 
     <figure class="gallery-item">
-      <img src="assets/gallery/croissants.jpg" alt="Croissants" loading="lazy">
+      <img src="assets/gallery/Croissants.jpg" alt="Croissants" loading="lazy">
       <figcaption>Croissants</figcaption>
     </figure>
   </div>
 </main>
 
-<!-- Lightbox modal -->
+<!-- ====================================================================
+     LIGHTBOX MODAL — Full-screen image preview
+     
+     HOW IT WORKS:
+     - When user clicks a gallery image, this modal opens
+     - JavaScript copies the image and caption into this modal
+     - User can close by: clicking X button, clicking dark area, or pressing ESC
+     - Controlled by setupGalleryLightbox() in scripts.js
+     ===================================================================== -->
 <div class="lightbox" id="lightbox" aria-hidden="true">
+  <!-- Close button (X) -->
   <button class="lightbox-close" id="lightboxClose" aria-label="Close image">✕</button>
+  
+  <!-- Large preview image -->
   <img class="lightbox-img" id="lightboxImg" alt="">
+  
+  <!-- Image caption -->
   <p class="lightbox-caption" id="lightboxCaption"></p>
 </div>
 
+<!-- ====================================================================
+     FOOTER — Site footer
+     ===================================================================== -->
 <footer class="footer">
   <p>© 2026 In It for the Dough</p>
 </footer>
 
+<!-- ====================================================================
+     SCRIPTS — Load JavaScript for gallery lightbox functionality
+     ===================================================================== -->
 <script src="js/scripts.js"></script>
 </body>
 </html>

@@ -1,196 +1,262 @@
-/* =================================================
-   styles.css — Main stylesheet
-   - Base typography and layout
-   - Component sections below: Hero, Buttons, Item Cards, Responsive rules, Contact form, Footer, Navbar, Social buttons
-   Edit sections by searching these headers.
-   ================================================= */
+/* ====================================================================
+   STYLES.CSS — Main Stylesheet for In It for the Dough Website
+   
+   SECTIONS:
+   1. BASE STYLES - Body, typography, layout
+   2. BUTTONS - Reusable button styling (.btn, .btn.secondary, .btn.large)
+   3. HERO SECTION - Home page hero layout
+   4. ITEM CARDS - Menu category cards on items.html
+   5. CONTACT FORM - Contact page form styling
+   6. NAVBAR - Header and navigation styling
+   7. SOCIAL BUTTONS - Instagram/Facebook buttons
+   8. ITEM DETAIL PAGE - Product detail page styling
+   9. FEATURED IMAGE SCROLLER - Home page carousel
+   10. GALLERY & LIGHTBOX - Gallery page and image modal
+   11. FOOTER - Footer styling
+   12. RESPONSIVE DESIGN - Mobile/tablet breakpoints
+   
+   COLOR SCHEME:
+   - Primary brown: #8b5e3c (main buttons)
+   - Secondary brown: #c08a5b (secondary buttons)
+   - Light background: #fff7f2 (warm white)
+   - Text: #333, #6b6b6b (muted)
+   
+   TO EDIT:
+   - Find the section you want to edit using CTRL+F
+   - Each section is clearly marked with comments
+   - Mobile responsive styles are at the bottom of each section
+==================================================================== */
+
+/* ====================================================================
+   1. BASE STYLES — Page Layout and Typography
+==================================================================== */
 body {
-font-size: 1.1rem;
-line-height: 1.6;
-max-width: 1100px;
-margin: 0 auto;
-padding: 1rem;
+  font-size: 1.1rem; /* Base font size */
+  line-height: 1.6; /* Spacing between lines */
+  max-width: 1100px; /* Max page width */
+  margin: 0 auto; /* Center page */
+  padding: 1rem; /* Space around edges */
 }
 
 
-/* New: two-column hero layout for desktop */
+/* ====================================================================
+   HERO SECTION — Home Page Hero with Two Columns
+==================================================================== */
+/* Desktop layout: text on left, buttons on right */
 .hero-split {
-display: grid;
-grid-template-columns: 1fr 320px;
-gap: 2rem;
-align-items: center;
-padding: 3rem;
+  display: grid;
+  grid-template-columns: 1fr 320px; /* 2 columns: text (wide) and buttons (narrow) */
+  gap: 2rem;
+  align-items: center;
+  padding: 3rem;
 }
 
-
+/* Right column: button container (center-aligned) */
 .hero-right {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-
-/* Buttons — reusable button styles used across the site.
-   Usage:
-   - Add class `btn` for primary buttons
-   - Add `btn secondary` for secondary color
-   - Add `btn large` for full-width or larger buttons
-*/
-.btn {
-background: #8b5e3c;
-color: white;
-padding: 0.75rem 1.5rem;
-text-decoration: none;
-border-radius: 8px;
-font-weight: bold;
-}
-
-
-.btn.secondary {
-background: #c08a5b;
-}
-
-
-.btn.large {
-width: 100%;
-text-align: center;
-font-size: 1.1rem;
-}
-
-
-/* --- MOBILE RESPONSIVE --- */
+/* Mobile responsive: stack columns vertically */
 @media (max-width: 900px) {
-.hero-split {
-grid-template-columns: 1fr;
-padding: 3rem 2rem;
-text-align: center;
+  .hero-split {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .hero-right {
+    flex-direction: row; /* Buttons in a row */
+    justify-content: center;
+  }
+
+  .btn.large {
+    width: auto; /* Don't force full width on mobile */
+  }
 }
 
 
-.hero-right {
-flex-direction: row;
-justify-content: center;
+/* ====================================================================
+   2. BUTTONS — Reusable Button Styles
+   ====================================================================
+   
+   USAGE:
+   - <a class="btn">Primary button</a>
+   - <a class="btn secondary">Secondary button</a>
+   - <a class="btn large">Full-width button</a>
+   - Combine classes: class="btn secondary large"
+==================================================================== */
+.btn {
+  background: #8b5e3c; /* Primary brown color */
+  color: white;
+  padding: 0.75rem 1.5rem; /* Size padding */
+  text-decoration: none; /* Remove link underline */
+  border-radius: 8px; /* Rounded corners */
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
+/* Secondary button variant - lighter brown */
+.btn.secondary {
+  background: #c08a5b; /* Lighter brown */
+}
 
+/* Large button - full width */
 .btn.large {
-width: auto;
+  width: 100%;
+  text-align: center;
+  font-size: 1.1rem;
 }
+
+/* Hover/focus states - lift up and add shadow */
+.btn:hover,
+.btn:focus {
+  transform: translateY(-4px); /* Move up slightly */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12); /* Add shadow */
 }
 
 
+/* ====================================================================
+   3. ITEM CARDS — Menu Category Cards (items.html)
+==================================================================== */
+/* Grid layout for item cards */
 .item-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 1.5rem;
 }
 
-
-/* Updated: make item cards look like the site buttons */
+/* Individual item card styling */
 .item-card {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-gap: 0.75rem;
-background: #8b5e3c; /* primary button color */
-color: #fff;
-padding: 1.25rem;
-text-align: center;
-border-radius: 12px;
-text-decoration: none;
-font-weight: bold;
-transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-box-shadow: 0 3px 8px rgba(0,0,0,0.08);
-min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #8b5e3c; /* Primary brown */
+  color: #fff;
+  padding: 1.25rem;
+  text-align: center;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+  min-height: 120px;
 }
 
-
-/* secondary variant */
+/* Secondary item card - lighter brown */
 .item-card.secondary {
-background: #c08a5b;
+  background: #c08a5b;
 }
 
-
-/* hover/focus states */
+/* Hover/focus states */
 .item-card:hover,
 .item-card:focus {
-transform: translateY(-4px);
-box-shadow: 0 8px 22px rgba(0,0,0,0.12);
+  transform: translateY(-4px); /* Move up */
+  box-shadow: 0 8px 22px rgba(0,0,0,0.12); /* Add shadow */
 }
 
-
-/* image sizing inside cards */
+/* Image sizing inside cards */
 .item-card img {
-width: 64px;
-height: auto;
-margin-bottom: 0.5rem;
+  width: 64px;
+  height: auto;
+  margin-bottom: 0.5rem;
 }
 
-
-/* label text */
+/* Text label in cards */
 .item-card span {
-display: block;
-color: inherit;
+  display: block;
+  color: inherit;
 }
 
 
-/* Contact form — layout and spacing for the contact page form */
+/* ====================================================================
+   4. CONTACT FORM — Contact Page Form Styling
+==================================================================== */
+/* Form container - center and layout */
 .contact-container form {
-max-width: 500px;
-margin: auto;
-display: flex;
-flex-direction: column;
+  max-width: 500px; /* Limit width */
+  margin: auto; /* Center form */
+  display: flex;
+  flex-direction: column; /* Stack form fields vertically */
 }
 
-
+/* Form inputs and buttons */
 input, textarea, button {
-margin: 0.5rem 0;
-padding: 0.75rem;
+  margin: 0.5rem 0; /* Space between fields */
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
 }
-button {
-background: #8b5e3c;
-color: white;
-border: none;
-border-radius: 8px;
-cursor: pointer;
-}
-button:hover {
-background: #7a4e2f;
-}
-/* Footer — site footer styles */
-footer {
-text-align: center;
-padding: 1rem;
-background: #f4f4f4;
-margin-top: 2rem;
-}
-footer p {
-color: #777;
-}
-footer a {
-color: #8b5e3c;
-text-decoration: none;
-font-weight: bold;
-}
-footer a:hover {
-text-decoration: underline;
-}  
 
-/* Navbar — site header styles */
+/* Submit button styling */
+button {
+  background: #8b5e3c; /* Primary brown */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #7a4e2f; /* Darker brown on hover */
+}
+
+/* Status message - shown after form submission */
+.form-status {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+}
+
+
+/* ====================================================================
+   5. FOOTER — Footer Styling
+==================================================================== */
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f4f4f4; /* Light gray background */
+  margin-top: 2rem;
+}
+
+footer p {
+  color: #777; /* Muted text color */
+  margin: 0;
+}
+
+footer a {
+  color: #8b5e3c; /* Primary brown for links */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+
+/* ====================================================================
+   6. NAVBAR — Site Header and Navigation
+==================================================================== */
 .navbar {
   display: flex;
   align-items: center;
   gap: 1rem;
   padding: 0.6rem 1rem;
-  background: #fff7f2; /* subtle warm background */
+  background: #fff7f2; /* Warm white background */
   border-radius: 14px;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  /* allow logo left and nav centered */
 }
 
-/* keep logo constrained */
+/* Logo in navbar - keep it constrained */
 .navbar .logo {
   max-width: 140px;
   width: auto;
@@ -199,21 +265,21 @@ text-decoration: underline;
   margin-right: 1rem;
 }
 
-/* nav area fills remaining space and centers links */
+/* Navigation links container */
 .navbar nav {
   display: flex;
   gap: 0.75rem;
-  flex: 1 1 auto;
+  flex: 1 1 auto; /* Take remaining space */
   justify-content: center;
   align-items: center;
 }
 
-/* make navbar links look like site buttons */
+/* Navbar link styling - look like buttons */
 .navbar a {
   display: inline-block;
   padding: 0.5rem 0.9rem;
   border-radius: 10px;
-  background: #8b5e3c; /* primary color */
+  background: #8b5e3c; /* Primary brown */
   color: #fff;
   text-decoration: none;
   font-weight: 700;
@@ -221,20 +287,20 @@ text-decoration: underline;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
 
-/* secondary style for less-prominent links (add class="secondary" in HTML if needed) */
+/* Secondary navbar link variant */
 .navbar a.secondary {
   background: #c08a5b;
 }
 
-/* hover and focus */
+/* Hover and focus states */
 .navbar a:hover,
 .navbar a:focus {
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Lift up */
   box-shadow: 0 8px 20px rgba(0,0,0,0.10);
   outline: none;
 }
 
-/* responsive: stack nav under logo on small screens */
+/* Mobile responsive: stack navbar vertically on small screens */
 @media (max-width: 700px) {
   .navbar {
     flex-direction: column;
@@ -261,7 +327,10 @@ text-decoration: underline;
   }
 }
 
-/* Social buttons (Instagram & Facebook) */
+
+/* ====================================================================
+   7. SOCIAL BUTTONS — Social Media Icons (Contact Page)
+==================================================================== */
 .social-links {
   display: flex;
   gap: 0.5rem;
@@ -270,6 +339,7 @@ text-decoration: underline;
   flex-wrap: wrap;
 }
 
+/* Individual social button */
 .social-btn {
   display: inline-flex;
   align-items: center;
@@ -286,24 +356,38 @@ text-decoration: underline;
   font-size: 0.9rem;
 }
 
-.social-btn svg { width: 16px; height: 16px; display: block; fill: currentColor; }
+/* SVG icon inside button */
+.social-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+  fill: currentColor;
+}
 
+/* Focus state for accessibility */
 .social-btn:focus {
   outline: 3px solid rgba(0,0,0,0.08);
   outline-offset: 3px;
 }
 
+/* Instagram gradient background */
 .instagram {
   background: linear-gradient(45deg,#f58529 0%,#dd2a7b 50%,#8134af 100%);
 }
 
+/* Facebook color */
 .facebook {
   background: #1877f2;
 }
 
-.social-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.10); opacity: 0.95; }
+/* Hover state - lift and fade */
+.social-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+  opacity: 0.95;
+}
 
-/* visually-hidden text for screen readers */
+/* Visually hidden text for screen readers */
 .sr-only {
   position: absolute;
   width: 1px;
@@ -316,16 +400,18 @@ text-decoration: underline;
   border: 0;
 }
 
-/* =====================
-   ITEM DETAIL PAGE
-===================== */
 
+/* ====================================================================
+   8. ITEM DETAIL PAGE — Product Detail Page Styling (item-detail.html)
+==================================================================== */
+/* Container for detail page */
 .detail-container {
   max-width: 900px;
   margin: 3rem auto;
   padding: 0 1.5rem;
 }
 
+/* Main detail card */
 .detail-card {
   background: #fff;
   border-radius: 12px;
@@ -333,6 +419,7 @@ text-decoration: underline;
   box-shadow: 0 8px 24px rgba(0,0,0,0.08);
 }
 
+/* Hero section - image and title */
 .detail-hero {
   display: flex;
   gap: 2rem;
@@ -349,6 +436,7 @@ text-decoration: underline;
   margin-bottom: 0.5rem;
 }
 
+/* Pill-shaped tags */
 .pill {
   display: inline-block;
   background: #f2e8dc;
@@ -359,6 +447,7 @@ text-decoration: underline;
   margin-right: 0.5rem;
 }
 
+/* Action buttons */
 .detail-actions {
   margin-top: 2rem;
   display: flex;
@@ -371,35 +460,40 @@ text-decoration: underline;
   color: #333;
 }
 
+/* Mobile responsive */
 @media (max-width: 600px) {
   .detail-hero {
     flex-direction: column;
     text-align: center;
   }
 }
-/* =========================
-   ITEM DETAIL: CATEGORY + GOODS LIST
-========================= */
 
+/* ====================================================================
+   ITEM DETAIL: CATEGORY HEADER + PRODUCT CARDS
+==================================================================== */
+/* Detail header - category info */
 .detail-header {
   margin-top: 1.5rem;
   padding: 1.25rem;
-  background: #fff7f2;
+  background: #fff7f2; /* Warm background */
   border-radius: 14px;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
 }
 
+/* Goods section container */
 .goods-section {
   margin-top: 1.5rem;
 }
 
+/* Grid of product cards */
 .goods-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Responsive columns */
   gap: 1rem;
   margin-top: 1rem;
 }
 
+/* Individual product card */
 .good-card {
   background: #ffffff;
   border-radius: 14px;
@@ -410,20 +504,24 @@ text-decoration: underline;
   gap: 1rem;
 }
 
+/* Top section - product name */
 .good-top h4 {
   margin: 0 0 0.25rem 0;
 }
 
+/* Content block inside card */
 .good-block h5 {
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
 }
 
+/* Muted text styling */
 .muted {
   color: #6b6b6b;
   margin: 0.25rem 0 0 0;
 }
 
+/* Container for badge chips (allergens, labels) */
 .chip-row {
   display: flex;
   flex-wrap: wrap;
@@ -431,99 +529,104 @@ text-decoration: underline;
   margin: 0.5rem 0 0.75rem 0;
 }
 
+/* Individual badge/chip */
 .chip {
   display: inline-flex;
   align-items: center;
   padding: 0.25rem 0.6rem;
-  border-radius: 999px;
+  border-radius: 999px; /* Full rounded */
   font-size: 0.9rem;
   font-weight: 700;
 }
 
-/* allergen chips */
+/* Allergen chip - gray background */
 .chip.allergen {
   background: #f4f4f4;
   color: #333;
   border: 1px solid rgba(0,0,0,0.08);
 }
 
-/* label/customization chips */
+/* Label/customization chip - brown background */
 .chip.label {
   background: #8b5e3c;
   color: #fff;
 }
 
+/* Action buttons in product card */
 .good-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.25rem;
 }
-/* Item detail: chips + cards + price table */
-.detail-header { margin-top: 1.5rem; padding: 1.25rem; background: #fff7f2; border-radius: 14px; box-shadow: 0 4px 18px rgba(0,0,0,0.06); }
-.goods-section { margin-top: 1.5rem; }
-.goods-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.good-card { background: #fff; border-radius: 14px; padding: 1.25rem; box-shadow: 0 4px 18px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 1rem; }
-.muted { color: #6b6b6b; }
 
-.chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.5rem 0 0.75rem 0; }
-.chip { display: inline-flex; align-items: center; padding: 0.25rem 0.6rem; border-radius: 999px; font-size: 0.9rem; font-weight: 700; }
-.chip.allergen { background: #f4f4f4; color: #333; border: 1px solid rgba(0,0,0,0.08); }
-.chip.label { background: #8b5e3c; color: #fff; }
-
-.price-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
-.price-table th, .price-table td { text-align: left; padding: 0.5rem 0.4rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
-.price-table th { font-weight: 800; }
-.good-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.25rem; }
-
-
-/*status message styling for contact form*/
-.form-status {
-  margin-top: 1rem;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
-  font-weight: 700;
+/* Price table in product card */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
 }
 
-/* =========================
-   HOME: FEATURED IMAGE SCROLLER
-========================= */
+.price-table th, .price-table td {
+  text-align: left;
+  padding: 0.5rem 0.4rem;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+}
 
+.price-table th {
+  font-weight: 800;
+}
+
+
+/* ====================================================================
+   9. FEATURED IMAGE SCROLLER — Home Page Carousel
+==================================================================== */
+/* Featured section container */
 .featured-strip {
   max-width: 1100px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
 }
 
-.section-head h2 { margin-bottom: 0.25rem; }
+/* Section header */
+.section-head h2 {
+  margin-bottom: 0.25rem;
+}
 
+/* Image scroller wrapper */
 .scroller-wrap {
   position: relative;
   margin-top: 1rem;
 }
 
+/* Horizontal scrolling container */
 .image-scroller {
   display: flex;
   gap: 0.75rem;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding: 0.75rem 2.75rem; /* space for buttons */
+  overflow-x: auto; /* Allow horizontal scroll */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  padding: 0.75rem 2.75rem; /* Space for buttons */
   border-radius: 16px;
-  background: #fff7f2;
+  background: #fff7f2; /* Warm background */
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  scrollbar-width: none;
+  scrollbar-width: none; /* Hide scrollbar */
 }
-.image-scroller::-webkit-scrollbar { display: none; }
 
+.image-scroller::-webkit-scrollbar {
+  display: none; /* Hide scrollbar on Chrome */
+}
+
+/* Images inside scroller */
 .image-scroller img {
   height: 140px;
   width: 220px;
-  object-fit: cover;
+  object-fit: cover; /* Crop to fit */
   border-radius: 14px;
-  flex: 0 0 auto;
-  user-select: none;
+  flex: 0 0 auto; /* Don't shrink */
+  user-select: none; /* Can't select image */
 }
 
+/* Scroll buttons (left/right arrows) */
 .scroll-btn {
   position: absolute;
   top: 50%;
@@ -539,40 +642,54 @@ text-decoration: underline;
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
   z-index: 2;
 }
-.scroll-btn.left { left: 8px; }
-.scroll-btn.right { right: 8px; }
 
-.scroll-btn:active { transform: translateY(-50%) scale(0.98); }
+.scroll-btn.left {
+  left: 8px; /* Left button position */
+}
 
+.scroll-btn.right {
+  right: 8px; /* Right button position */
+}
+
+/* Button click animation */
+.scroll-btn:active {
+  transform: translateY(-50%) scale(0.98); /* Shrink on click */
+}
+
+/* CTA below scroller */
 .strip-cta {
   margin-top: 1rem;
 }
 
-/* =========================
-   GALLERY PAGE + LIGHTBOX
-========================= */
 
+/* ====================================================================
+   10. GALLERY PAGE + LIGHTBOX — Gallery and Image Modal
+==================================================================== */
+/* Gallery page container */
 .gallery-container {
   max-width: 1100px;
   margin: 2.5rem auto;
   padding: 0 1.5rem;
 }
 
+/* Grid layout for gallery images */
 .gallery-grid {
   margin-top: 1rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive columns */
   gap: 1rem;
 }
 
+/* Individual gallery item */
 .gallery-item {
   background: #fff;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  cursor: pointer;
+  cursor: pointer; /* Show it's clickable */
 }
 
+/* Gallery item image */
 .gallery-item img {
   width: 100%;
   height: 220px;
@@ -580,16 +697,20 @@ text-decoration: underline;
   display: block;
 }
 
+/* Gallery item caption */
 .gallery-item figcaption {
   padding: 0.75rem 0.9rem;
   font-weight: 800;
 }
 
-/* Lightbox */
+/* ====================================================================
+   LIGHTBOX MODAL — Full-Screen Image Preview
+==================================================================== */
+/* Lightbox overlay */
 .lightbox {
   position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.75);
+  inset: 0; /* Cover entire screen */
+  background: rgba(0,0,0,0.75); /* Dark overlay */
   display: none;
   align-items: center;
   justify-content: center;
@@ -597,15 +718,20 @@ text-decoration: underline;
   z-index: 999;
 }
 
-.lightbox.is-open { display: flex; }
+/* Show lightbox */
+.lightbox.is-open {
+  display: flex;
+}
 
+/* Large image in lightbox */
 .lightbox-img {
-  max-width: min(900px, 95vw);
-  max-height: 78vh;
+  max-width: min(900px, 95vw); /* Responsive width */
+  max-height: 78vh; /* Responsive height */
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.4);
 }
 
+/* Image caption below image */
 .lightbox-caption {
   color: #fff;
   margin-top: 0.75rem;
@@ -613,6 +739,7 @@ text-decoration: underline;
   font-weight: 800;
 }
 
+/* Close button (X) */
 .lightbox-close {
   position: absolute;
   top: 18px;

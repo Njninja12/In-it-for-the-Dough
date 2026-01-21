@@ -8,96 +8,121 @@
 </head>
 <body>
 
-
-<!-- Site header / primary navigation — edit links here -->
+<!-- ====================================================================
+     HEADER / NAVIGATION — Edit links here
+     ===================================================================== -->
 <header class="navbar">
   <img src="assets/InitfortheDoughLogo.png" class="logo" alt="In It for the Dough Logo">
- <nav>
-  <a href="index.html">Home</a>
-  <a href="items.html">What I Bake</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="items.html">What I Bake</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-
+<!-- ====================================================================
+     MENU / ITEMS PAGE — Display menu categories as clickable cards
+     
+     HOW THIS WORKS:
+     - Each menu section has a title and item cards
+     - Each card links to item-detail.html with a ?item= query parameter
+     - The JavaScript in scripts.js reads this parameter and displays details
+     - To ADD a category:
+       1. Add a new <section class="menu-section"> 
+       2. Create item cards inside
+       3. Update the ?item= parameter to match a category in js/scripts.js items object
+     
+     ITEM CARD STRUCTURE:
+     - href should be: item-detail.html?item=CATEGORY_NAME
+     - The CATEGORY_NAME must match a key in the items object (scripts.js)
+     - Examples: ?item=cakes, ?item=breads, ?item=cookies
+     ===================================================================== -->
 <main class="items-container">
 <h2>What I Can Bake for You</h2>
 <p class="menu-note">Menu items are based on custom orders and availability. Message me for details!</p>
 
-
-<!-- Menu section: Classic Cakes & Cheesecakes — update title and cards here -->
+<!-- MENU SECTION 1: Classic Cakes & Cheesecakes -->
 <section class="menu-section">
-<h3>Classic Cakes & Cheesecakes</h3>
-<div class="item-grid">
-<!-- Item card — clickable card linking to detail page (update href query param to match items in js/scripts.js) -->
-<a href="item-detail.html?item=cakes" class="item-card" role="button" aria-label="Classic Cakes & Cheesecakes">
-    <img src="assets/birthday-cake.png" alt="Cakes and Cheesecakes">
-<span>Classic Cakes & Cheesecakes</span>
-</a>
-</div>
+  <h3>Classic Cakes & Cheesecakes</h3>
+  <div class="item-grid">
+    <!-- Item card: clickable card linking to detail page -->
+    <!-- The ?item=cakes parameter tells scripts.js which category to display -->
+    <a href="item-detail.html?item=cakes" class="item-card" role="button" aria-label="Classic Cakes & Cheesecakes">
+      <img src="assets/birthday-cake.png" alt="Cakes and Cheesecakes icon">
+      <span>Classic Cakes & Cheesecakes</span>
+    </a>
+  </div>
 </section>
 
-
-<!-- Menu section: Breads -->
+<!-- MENU SECTION 2: Breads -->
 <section class="menu-section">
-<h3>Breads</h3>
-<div class="item-grid">
-<!-- Item card — clickable card linking to detail page (update href query param to match items in js/scripts.js) -->
-<a href="item-detail.html?item=breads" class="item-card" role="button" aria-label="Breads">
-    <img src="assets/bread.png" alt="Breads">
-<span>Breads</span>
-</a>
-</div>
+  <h3>Breads</h3>
+  <div class="item-grid">
+    <!-- Item card: clickable card linking to detail page -->
+    <!-- The ?item=breads parameter tells scripts.js which category to display -->
+    <a href="item-detail.html?item=breads" class="item-card" role="button" aria-label="Breads">
+      <img src="assets/bread.png" alt="Bread icon">
+      <span>Breads</span>
+    </a>
+  </div>
 </section>
 
-
-<!-- Menu section: Specialty Items -->
+<!-- MENU SECTION 3: Specialty Items -->
 <section class="menu-section">
-<h3>Specialty Items</h3>
-<div class="item-grid">
-<!-- Item card — clickable card linking to detail page (update href query param to match items in js/scripts.js) -->
-<a href="item-detail.html?item=specialty" class="item-card secondary" role="button" aria-label="Specialty Treats">
-    <img src="assets/specialty.png" alt="Specialty Treats">
-<span>Specialty Treats</span>
-</a>
-</div>
+  <h3>Specialty Items</h3>
+  <div class="item-grid">
+    <!-- Item card: clickable card linking to detail page -->
+    <!-- The ?item=specialty parameter tells scripts.js which category to display -->
+    <!-- Using class="item-card secondary" for different button styling -->
+    <a href="item-detail.html?item=specialty" class="item-card secondary" role="button" aria-label="Specialty Treats">
+      <img src="assets/specialty.png" alt="Specialty treats icon">
+      <span>Specialty Treats</span>
+    </a>
+  </div>
 </section>
 
-
-<!-- Menu section: Cupcakes -->
+<!-- MENU SECTION 4: Cupcakes -->
 <section class="menu-section">
-<h3>Cupcakes</h3>
-<div class="item-grid">
-<!-- Item card — clickable card linking to detail page (update href query param to match items in js/scripts.js) -->
-<a href="item-detail.html?item=cupcakes" class="item-card" role="button" aria-label="Cupcakes">
-    <img src="assets/cup-cake.png" alt="Cupcakes">
-<span>Cupcakes</span>
-</a>
-</div>
+  <h3>Cupcakes</h3>
+  <div class="item-grid">
+    <!-- Item card: clickable card linking to detail page -->
+    <!-- The ?item=cupcakes parameter tells scripts.js which category to display -->
+    <a href="item-detail.html?item=cupcakes" class="item-card" role="button" aria-label="Cupcakes">
+      <img src="assets/cup-cake.png" alt="Cupcake icon">
+      <span>Cupcakes</span>
+    </a>
+  </div>
 </section>
 
-
-<!-- Menu section: Cookies -->
+<!-- MENU SECTION 5: Cookies -->
 <section class="menu-section">
-<h3>Cookies</h3>
-<div class="item-grid">
-<!-- Item card — clickable card linking to detail page (update href query param to match items in js/scripts.js) -->
-<a href="item-detail.html?item=cookies" class="item-card" role="button" aria-label="Cookies">
-    <img src="assets/cookie.png" alt="Cookies">
-<span>Cookies</span>
-</a>
-</div>
+  <h3>Cookies</h3>
+  <div class="item-grid">
+    <!-- Item card: clickable card linking to detail page -->
+    <!-- The ?item=cookies parameter tells scripts.js which category to display -->
+    <a href="item-detail.html?item=cookies" class="item-card" role="button" aria-label="Cookies">
+      <img src="assets/cookie.png" alt="Cookie icon">
+      <span>Cookies</span>
+    </a>
+  </div>
 </section>
-
 
 </main>
 
-
-<!-- Site footer (simple) -->
-<footer>
-<p>© 2026 In It for the Dough</p>
+<!-- ====================================================================
+     FOOTER — Site footer
+     ===================================================================== -->
+<footer class="footer">
+  <p>© 2026 In It for the Dough</p>
 </footer>
+
+<!-- ====================================================================
+     SCRIPTS — Load JavaScript for interactive features
+     ===================================================================== -->
+<script src="js/scripts.js"></script>
+</body>
+</html>
 
 
 </body>

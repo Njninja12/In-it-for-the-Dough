@@ -1,27 +1,49 @@
-/* scripts.js — site JavaScript
-   - `items` contains menu categories used by item-detail.html
-   - Item detail page reads ?item= and renders content into #itemDetail
-   - Contact form integration (EmailJS) is configured below; replace placeholders with your keys
-*/
-// Item detail data (easy to expand later)
-/* --------------------------
-   Item detail data (categories + baked goods)
-   - item-detail.html uses ?item=breads (etc)
-   - each category has an array of baked goods with sizes + allergens + labels
--------------------------- */
+/* ====================================================================
+   SCRIPTS.JS — Main JavaScript File for In It for the Dough Website
+   
+   SECTIONS:
+   1. ITEM DATA - Menu categories and baked goods database
+   2. ITEM DETAIL RENDERING - Displays product details on item-detail.html
+   3. CONTACT FORM - EmailJS email integration
+   4. FEATURED SCROLLER - Auto-scrolling carousel on home page
+   5. GALLERY LIGHTBOX - Image preview modal for gallery.html
+   
+   HOW TO EDIT:
+   - To add new menu items: Edit the `items` object below
+   - To change EmailJS credentials: Find the EmailJS init section
+   - To modify gallery behavior: Scroll to "GALLERY" section
+==================================================================== */
 
-// Item detail data (categories -> list of items with sizes + prices + tags)
+/* ====================================================================
+   1. ITEM DATA — Menu Categories & Baked Goods Database
+   ====================================================================
+   
+   STRUCTURE: Each category (cakes, breads, etc) contains:
+   - title: Category name displayed to customers
+   - description: Short explanation of the category
+   - categoryLabels: Special features/options available
+   - goods: Array of individual items with:
+     * name: Product name
+     * portionPrices: Array of size/price pairs
+     * allergens: List of allergens/dietary concerns
+     * labels: Customization options
+     
+   TO ADD A NEW ITEM: Add an object to the goods array of any category
+   TO ADD A NEW CATEGORY: Copy the structure of any existing category
+==================================================================== */
+
 const items = {
   cakes: {
     title: "Classic Cakes & Cheesecakes",
     description: "Choose a cake/cheesecake flavor, then pick your size. Customization available.",
-    categoryLabels: ["Custom Decorations", "Gluten Free Option", "Sugar Free Option"],
+    categoryLabels: ["Custom Decorations", "Gluten Free Option", "Sugar Free Option"], // Features available for cakes
     goods: [
+      // CAKES AVAILABLE - Add or remove items here
       {
         name: "Chocolate Fudge Cake",
-        portionPrices: [{ size: "Custom cake", price: "$40–$55" }],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Customizable"]
+        portionPrices: [{ size: "Custom cake", price: "$40–$55" }], // Size options and pricing
+        allergens: ["Gluten", "Eggs", "Dairy"], // Allergen warnings
+        labels: ["Customizable"] // What can be customized
       },
       {
         name: "Red Velvet Cake",
@@ -65,13 +87,14 @@ const items = {
   breads: {
     title: "Breads",
     description: "Fresh baked breads — ask about available flavors and custom options.",
-    categoryLabels: ["Gluten Free Options (select items)"],
+    categoryLabels: ["Gluten Free Options (select items)"], // Features available for breads
     goods: [
+      // BREADS AVAILABLE - Add or remove items here
       {
         name: "White or Wheat (GF)",
-        portionPrices: [{ size: "Loaf", price: "$7–$15" }],
-        allergens: ["Varies by recipe"],
-        labels: ["Gluten Free"]
+        portionPrices: [{ size: "Loaf", price: "$7–$15" }], // Size options and pricing
+        allergens: ["Varies by recipe"], // Allergen warnings
+        labels: ["Gluten Free"] // What can be customized
       },
       {
         name: "Chocolate Zucchini / Zucchini",
@@ -121,34 +144,35 @@ const items = {
   specialty: {
     title: "Specialty Treats",
     description: "Seasonal + specialty items. Availability can vary — message me for details!",
-    categoryLabels: ["Custom Orders Welcome"],
+    categoryLabels: ["Custom Orders Welcome"], // Features available for specialty
     goods: [
+      // SPECIALTY ITEMS - Add or remove items here
       {
         name: "Cinnamon Rolls",
         portionPrices: [
-          { size: "Half Dozen", price: "$10" },
+          { size: "Half Dozen", price: "$10" }, // Size options and pricing
           { size: "Full Dozen", price: "$20" }
         ],
-        allergens: ["Gluten", "Dairy", "Eggs"],
-        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+        allergens: ["Gluten", "Dairy", "Eggs"], // Allergen warnings
+        labels: ["Gluten Free Option"] // What can be customized
       },
       {
         name: "Croissants",
         portionPrices: [
-          { size: "Half Dozen", price: "$10" },
+          { size: "Half Dozen", price: "$10" }, // Size options and pricing
           { size: "Full Dozen", price: "$20" }
         ],
-        allergens: ["Gluten", "Dairy", "Eggs"],
-        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+        allergens: ["Gluten", "Dairy", "Eggs"], // Allergen warnings
+        labels: ["Gluten Free Option"] // What can be customized
       },
       {
         name: "Dinner Rolls",
         portionPrices: [
-          { size: "Half Dozen", price: "$10" },
+          { size: "Half Dozen", price: "$10" }, // Size options and pricing
           { size: "Full Dozen", price: "$20" }
         ],
-        allergens: ["Gluten", "Dairy", "Eggs"],
-        labels: ["Gluten Free Option"] // menu note: rolls are gluten free
+        allergens: ["Gluten", "Dairy", "Eggs"], // Allergen warnings
+        labels: ["Gluten Free Option"] // What can be customized
       },
       {
         name: "Oreo Truffles",
@@ -180,13 +204,14 @@ const items = {
   cupcakes: {
     title: "Cupcakes",
     description: "Pick your flavors, then choose your order size.",
-    categoryLabels: ["Custom Flavors", "Gluten Free Option", "Sugar Free Option"],
+    categoryLabels: ["Custom Flavors", "Gluten Free Option", "Sugar Free Option"], // Features available
     goods: [
+      // CUPCAKE FLAVORS - Add or remove items here
       {
         name: "Chocolate",
-        portionPrices: [{ size: "Per Dozen", price: "$10–$20" }],
-        allergens: ["Gluten", "Eggs", "Dairy"],
-        labels: ["Customizable"]
+        portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], // Size options and pricing
+        allergens: ["Gluten", "Eggs", "Dairy"], // Allergen warnings
+        labels: ["Customizable"] // What can be customized
       },
       { name: "Peanut Butter", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy", "Peanuts"], labels: ["Customizable"] },
       { name: "Churro", portionPrices: [{ size: "Per Dozen", price: "$10–$20" }], allergens: ["Gluten", "Eggs", "Dairy"], labels: ["Customizable"] },
@@ -202,8 +227,9 @@ const items = {
   cookies: {
     title: "Cookies",
     description: "Choose your cookie type and your order size.",
-    categoryLabels: ["All Cookies Gluten Free", "Sugar Free Option (select items)"],
+    categoryLabels: ["All Cookies Gluten Free", "Sugar Free Option (select items)"], // Features available
     goods: [
+      // COOKIE FLAVORS - Add or remove items here
       { name: "Sugar", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
       { name: "Chocolate Chunk", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
       { name: "Thumbprints", portionPrices: [{ size: "Per Dozen", price: "$10–$25" }], allergens: ["Eggs", "Dairy"], labels: ["Gluten Free"] },
@@ -218,19 +244,34 @@ const items = {
 
 
 
-/* --------------------------
-   Item detail rendering (only runs on item-detail.html)
--------------------------- */
+/* ====================================================================
+   2. ITEM DETAIL RENDERING — Displays Product Details (item-detail.html)
+   ====================================================================
+   
+   WHAT IT DOES:
+   - Reads ?item= query parameter from URL (e.g., ?item=cakes)
+   - Looks up category data from the items object above
+   - Renders HTML with product info, sizes, prices, allergens
+   
+   HOW TO USE:
+   - User visits: item-detail.html?item=cakes
+   - Script pulls "cakes" data from items object
+   - Displays formatted product cards with all details
+   
+   IF IT'S NOT WORKING:
+   - Check that ?item=XXXX matches a key in the items object
+   - Check browser console (F12) for errors
+==================================================================== */
 
-// --------------------------
-// Item detail rendering
-// --------------------------
+// Get the element where product details will be displayed
 const itemDetailEl = document.getElementById("itemDetail");
 
 if (itemDetailEl) {
+  // Extract the item category from URL (e.g., ?item=cakes)
   const params = new URLSearchParams(window.location.search);
   const itemKey = params.get("item");
 
+  // HELPER FUNCTION: Escape HTML to prevent security issues
   const escapeHtml = (str) =>
     String(str)
       .replaceAll("&", "&amp;")
@@ -239,6 +280,7 @@ if (itemDetailEl) {
       .replaceAll('"', "&quot;")
       .replaceAll("'", "&#039;");
 
+  // HELPER FUNCTION: Create colored badge chips for allergens/labels
   const renderChips = (arr, chipClass) => {
     if (!arr || !arr.length) return "<p class='muted'>None</p>";
     return `<div class="chip-row">${arr
@@ -246,6 +288,7 @@ if (itemDetailEl) {
       .join("")}</div>`;
   };
 
+  // HELPER FUNCTION: Create price table from size/price pairs
   const renderPriceTable = (portionPrices) => {
     if (!portionPrices || !portionPrices.length) return "<p class='muted'>Message for pricing</p>";
     return `
@@ -262,9 +305,11 @@ if (itemDetailEl) {
     `;
   };
 
+  // Check if the requested category exists in the items object
   if (itemKey && items[itemKey]) {
-    const cat = items[itemKey];
+    const cat = items[itemKey]; // Get category data (cakes, breads, etc)
 
+    // Build and display the HTML for this category
     itemDetailEl.innerHTML = `
       <section class="detail-header">
         <h2>${escapeHtml(cat.title)}</h2>
@@ -312,6 +357,7 @@ if (itemDetailEl) {
       </section>
     `;
   } else {
+    // If the item category doesn't exist, show error message
     itemDetailEl.innerHTML = `<h2>Item not found</h2><p>Please go back to the menu.</p>`;
   }
 }
@@ -319,38 +365,66 @@ if (itemDetailEl) {
 
 
 
-// --------------------------
-// Contact form (EmailJS)
-// Configure your EmailJS public key, service ID and template ID below:
-// - Replace 'YOUR_PUBLIC_KEY' with your EmailJS public key
-// - Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' where they are used in sendForm
-// --------------------------
+/* ====================================================================
+   3. CONTACT FORM — Email Integration with EmailJS Service
+   ====================================================================
+   
+   WHAT IT DOES:
+   - Handles contact form submission on contact.html
+   - Sends emails using the EmailJS service
+   - Shows user feedback (success/error messages)
+   
+   HOW TO SETUP:
+   1. Sign up at https://www.emailjs.com/
+   2. Create a new service and template
+   3. Replace these values with YOUR credentials:
+      - emailjs.init("YOUR_PUBLIC_KEY") - Your EmailJS public key
+      - emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+   
+   WHERE TO FIND CREDENTIALS:
+   - Public Key: Dashboard > Account > Public Key
+   - Service ID: Services section
+   - Template ID: Email Templates section
+   
+   HOW TO TEST:
+   - Fill out the contact form and submit
+   - Check your email inbox to confirm messages arrive
+==================================================================== */
 
 (function () {
-  // EmailJS Public Key is here:
+  // Initialize EmailJS with your public key
+  // TODO: Replace with your actual EmailJS public key
   emailjs.init("ghlIhVPe555cmjCSd");
 })();
 
-const conactForm= document.getElementById("contactForm");
-const formStatus= document.getElementById("formStatus");
+// Get form element and status message display element
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
 
+// Handle form submission
 if (contactForm) {
   contactForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent default form submission
 
+    // Show "Sending..." message to user
     if (formStatus) {
       formStatus.textContent = "Sending...";
     }
 
+    // Send email using EmailJS
+    // TODO: Replace 'service_uz73kd3' with YOUR_SERVICE_ID
+    // TODO: Replace 'template_li1j57b' with YOUR_TEMPLATE_ID
     emailjs
       .sendForm('service_uz73kd3', 'template_li1j57b', this)
       .then(() => {
+        // Email sent successfully
         if (formStatus) {
           formStatus.textContent = "Message sent! I'll get back to you soon.";
         }
-        contactForm.reset();
+        contactForm.reset(); // Clear the form fields
       })
-      .catch(() => {
+      .catch((error) => {
+        // Email failed to send
         console.error("EmailJS Error:", error);
         if (formStatus) {
           formStatus.textContent = "Something went wrong. Please try again or message me on instagram.";
@@ -360,97 +434,137 @@ if (contactForm) {
 }
 
 
-/* =========================
-   HOME: Featured auto-scroller + manual buttons
-========================= */
+/* ====================================================================
+   4. FEATURED SCROLLER — Auto-Scrolling Carousel (Home Page)
+   ====================================================================
+   
+   WHAT IT DOES:
+   - Automatically scrolls through featured bake images
+   - User can manually scroll or click left/right buttons
+   - Pauses scrolling on hover/focus or when user interacts
+   - Respects "prefers-reduced-motion" accessibility setting
+   
+   WHERE IT'S USED:
+   - index.html - Featured Bakes section
+   
+   HOW IT WORKS:
+   - Smooth horizontal scrolling animation
+   - Reverses direction at start/end (bounces back)
+   - Manual buttons let users jump through images
+==================================================================== */
 (function setupFeaturedScroller() {
+  // Get the scroller element from the HTML
   const scroller = document.getElementById("featuredScroller");
-  if (!scroller) return;
+  if (!scroller) return; // Exit if scroller not found
 
+  // Check if user prefers reduced motion (accessibility)
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  let isPaused = false;
-  let direction = 1; // 1 = right, -1 = left
-  let rafId = null;
+  // Variables to control scrolling behavior
+  let isPaused = false; // Whether scrolling is paused
+  let direction = 1; // 1 = scroll right, -1 = scroll left
+  let rafId = null; // Animation frame ID
 
+  // Animation function - runs every frame to scroll
   const step = () => {
     if (!isPaused) {
-      scroller.scrollLeft += 0.6 * direction;
+      scroller.scrollLeft += 0.6 * direction; // Move scroll position
 
+      // Check if we hit the end and need to reverse direction
       const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
       const atStart = scroller.scrollLeft <= 2;
 
-      if (atEnd) direction = -1;
-      if (atStart) direction = 1;
+      if (atEnd) direction = -1; // Reached end, scroll back
+      if (atStart) direction = 1; // Reached start, scroll forward
     }
-    rafId = requestAnimationFrame(step);
+    rafId = requestAnimationFrame(step); // Continue animation
   };
 
+  // Helper functions to pause/resume scrolling
   const pause = () => { isPaused = true; };
   const resume = () => { isPaused = false; };
 
-  // Pause on hover/focus (nice UX)
+  // Pause scrolling when user hovers or focuses on scroller
   scroller.addEventListener("mouseenter", pause);
   scroller.addEventListener("mouseleave", resume);
   scroller.addEventListener("focusin", pause);
   scroller.addEventListener("focusout", resume);
 
-  // If user touches/drags, pause for a moment
+  // If user manually scrolls/touches, pause briefly then resume
   let resumeTimer = null;
   const pauseBriefly = () => {
     pause();
     clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(resume, 1200);
+    resumeTimer = setTimeout(resume, 1200); // Resume after 1.2 seconds
   };
   scroller.addEventListener("touchstart", pauseBriefly, { passive: true });
   scroller.addEventListener("wheel", pauseBriefly, { passive: true });
 
-  // Manual buttons
+  // Handle manual scroll buttons (left/right arrows)
   document.querySelectorAll("[data-scroll]").forEach((btn) => {
     btn.addEventListener("click", () => {
-      pauseBriefly();
-      const dir = btn.dataset.scroll === "left" ? -1 : 1;
-      const amount = Math.round(scroller.clientWidth * 0.75) * dir;
-      scroller.scrollBy({ left: amount, behavior: "smooth" });
+      pauseBriefly(); // Pause auto-scroll briefly
+      const dir = btn.dataset.scroll === "left" ? -1 : 1; // Get direction from button
+      const amount = Math.round(scroller.clientWidth * 0.75) * dir; // Scroll 75% of width
+      scroller.scrollBy({ left: amount, behavior: "smooth" }); // Smooth scroll
     });
   });
 
-  // Start auto-scroll unless reduced motion
+  // Start auto-scroll animation (unless user prefers reduced motion)
   if (!prefersReducedMotion) {
     rafId = requestAnimationFrame(step);
   }
 })();
 
 
-/* =========================
-   GALLERY: Lightbox
-========================= */
+/* ====================================================================
+   5. GALLERY LIGHTBOX — Image Preview Modal (Gallery Page)
+   ====================================================================
+   
+   WHAT IT DOES:
+   - Displays large image preview when user clicks gallery thumbnail
+   - Shows image caption
+   - Closes when user clicks close button, clicks outside image, or presses ESC
+   
+   WHERE IT'S USED:
+   - gallery.html - Gallery grid
+   
+   HOW TO USE:
+   - User clicks any gallery image
+   - Large version opens in modal overlay
+   - User can close by: clicking X button, clicking dark area, or pressing ESC
+==================================================================== */
 (function setupGalleryLightbox() {
+  // Get lightbox elements from the HTML
   const grid = document.getElementById("galleryGrid");
   const lightbox = document.getElementById("lightbox");
   const imgEl = document.getElementById("lightboxImg");
   const capEl = document.getElementById("lightboxCaption");
   const closeBtn = document.getElementById("lightboxClose");
 
+  // Exit if any required element is missing
   if (!grid || !lightbox || !imgEl || !capEl || !closeBtn) return;
 
+  // Function to open the lightbox with an image
   const open = (src, alt, caption) => {
-    imgEl.src = src;
-    imgEl.alt = alt || "";
-    capEl.textContent = caption || "";
-    lightbox.classList.add("is-open");
-    lightbox.setAttribute("aria-hidden", "false");
+    imgEl.src = src; // Set the image source
+    imgEl.alt = alt || ""; // Set image alt text
+    capEl.textContent = caption || ""; // Set caption text
+    lightbox.classList.add("is-open"); // Show lightbox (CSS does the display)
+    lightbox.setAttribute("aria-hidden", "false"); // Announce to screen readers
   };
 
+  // Function to close the lightbox
   const close = () => {
-    lightbox.classList.remove("is-open");
-    lightbox.setAttribute("aria-hidden", "true");
-    imgEl.src = "";
-    capEl.textContent = "";
+    lightbox.classList.remove("is-open"); // Hide lightbox
+    lightbox.setAttribute("aria-hidden", "true"); // Announce to screen readers
+    imgEl.src = ""; // Clear image
+    capEl.textContent = ""; // Clear caption
   };
 
+  // Click on gallery image to open lightbox
   grid.addEventListener("click", (e) => {
-    const figure = e.target.closest(".gallery-item");
+    const figure = e.target.closest(".gallery-item"); // Find clicked gallery item
     if (!figure) return;
 
     const img = figure.querySelector("img");
@@ -460,14 +574,15 @@ if (contactForm) {
     open(img.src, img.alt, cap ? cap.textContent : "");
   });
 
+  // Close button - close when X is clicked
   closeBtn.addEventListener("click", close);
 
-  // click outside image closes
+  // Click outside image - close when clicking dark background
   lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) close();
+    if (e.target === lightbox) close(); // Only close if clicking the background, not the image
   });
 
-  // ESC closes
+  // ESC key - close when user presses ESC
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && lightbox.classList.contains("is-open")) close();
   });

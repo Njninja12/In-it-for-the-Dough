@@ -9,7 +9,10 @@
 <body>
 
 
-<!-- Site header / primary navigation — edit links here -->
+<!-- ====================================================================
+     HEADER / NAVIGATION — Edit links here to add/remove pages
+     Classes: .navbar (container), .logo (image), nav > a (links)
+     ===================================================================== -->
 <header class="navbar">
 <img src="assets/InitfortheDoughLogo.png" alt="In It for the Dough Logo" class="logo">
 <nav>
@@ -21,18 +24,22 @@
 </header>
 
 
-<!-- Hero section: two-column layout (text left, CTAs on right) -->
+<!-- ====================================================================
+     HERO SECTION — Main heading + Call-to-Action buttons
+     Class: .hero-split (two-column layout on desktop)
+     Two-column: left column (text), right column (buttons)
+     ===================================================================== -->
 <section class="hero-split">
 <div class="hero-left">
 <h1>In It for the Dough</h1>
 <p class="tagline">
 I'm just a mom turning a passion for baking into something special. From fresh baked breads to desserts and all-around delicious food, everything I make is baked with love.
 <br><br>
-I truly love baking and feeding people — let me feed you! You won’t be disappointed.
+I truly love baking and feeding people — let me feed you! You won't be disappointed.
 </p>
 </div>
 
-
+<!-- CTA Buttons: .btn for primary, .btn.secondary for secondary -->
 <div class="hero-right">
 <a href="items.html" class="btn large">What I Bake</a>
 <a href="contact.html" class="btn secondary large">Contact Me</a>
@@ -45,12 +52,25 @@ I truly love baking and feeding people — let me feed you! You won’t be disap
         <p class="muted">A few favorites - swipe/scroll to see more.</p>
     </div>
 
-    <div class="image-scroller" aria-label="Feature bakes scroller">
+    <!-- ====================================================================
+         FEATURED BAKES CAROUSEL — Auto-scrolling image carousel
+         Classes: .featured-strip (container), .image-scroller (scrollable area)
+         Controlled by JavaScript in js/scripts.js — setupFeaturedScroller()
+         
+         HOW TO EDIT:
+         - Add/remove images in the .image-scroller div (the second one, with id="featuredScroller")
+         - Images should be in assets/gallery/ folder
+         - Edit img alt text for accessibility and SEO
+         ===================================================================== -->
+    <div class="scroller-wrap">
+        <!-- Left scroll button — users can click to scroll left -->
         <button class="scroll-btn left" type="button" data-scroll="left" aria-label="Scroll left">
-            <
+            &lt;
         </button>
 
+        <!-- Image carousel container — scrolls left/right with keyboard/mouse/touch -->
         <div class="image-scroller" id="featuredScroller" tabindex="0">
+            <!-- Add/remove images here to change featured bakes -->
             <img src="assets/gallery/Breads.jpg" alt="Fresh baked breads" loading="lazy">
             <img src="assets/gallery/CinnamonRolls.jpg" alt="Cinnamon rolls with icing" loading="lazy">
             <img src="assets/gallery/ChocolateChip.jpg" alt="Chocolate chip cookies" loading="lazy">
@@ -59,18 +79,23 @@ I truly love baking and feeding people — let me feed you! You won’t be disap
             <img src="assets/gallery/Croissants.jpg" alt="Croissants" loading="lazy">
             <img src="assets/gallery/SugarCookies.jpg" alt="Sugar cookies" loading="lazy">
         </div>
+
+        <!-- Right scroll button — users can click to scroll right -->
         <button class="scroll-btn right" type="button" data-scroll="right" aria-label="Scroll right">
-            >
+            &gt;
         </button>
     </div>
 
+    <!-- Call-to-action to view the full gallery -->
     <div class="strip-cta">
         <a class="btn secondary" href="gallery.html">View Full Gallery</a>
     </div>
 </section>
 
 
-<!-- Site footer (simple) -->
+<!-- ====================================================================
+     FOOTER — Site footer (copyright)
+     ===================================================================== -->
 <footer>
 <p>© 2026 In It for the Dough</p>
 </footer>

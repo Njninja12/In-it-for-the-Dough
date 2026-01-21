@@ -1,75 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | In It for the Dough</title>
-<link rel="stylesheet" href="css/styles.css">
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | In It for the Dough</title>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- EmailJS library for form submission (sends emails without server) -->
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
 
-
+<!-- ====================================================================
+     HEADER / NAVIGATION — Edit links here
+     ===================================================================== -->
 <header class="navbar">
   <img src="assets/InitfortheDoughLogo.png" class="logo" alt="In It for the Dough Logo">
   <nav>
-  <a href="index.html">Home</a>
-  <a href="items.html">What I Bake</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-</nav>
+    <a href="index.html">Home</a>
+    <a href="items.html">What I Bake</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-
+<!-- ====================================================================
+     CONTACT PAGE — Contact form + social links
+     ===================================================================== -->
 <main class="contact-container">
-<h2>Contact Me</h2>
+  <h2>Contact Me</h2>
 
+  <!-- ====================================================================
+       SOCIAL LINKS — Instagram & Facebook icons
+       
+       HOW TO EDIT:
+       - Update href attributes to your actual social media URLs
+       - SVG icons are inline (draw directly in HTML)
+       - These are clickable buttons that open social profiles
+       ===================================================================== -->
+  <div class="social-links">
+    <!-- Instagram link with icon -->
+    <a class="social-btn instagram" href="https://www.instagram.com/initforthedough/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram">
+      <!-- Instagram icon SVG -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm5.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+      </svg>
+      <span class="sr-only">Instagram</span>
+    </a>
 
-<!-- Social links: icon buttons linking to social profiles; edit SVGs here -->
-<div class="social-links">
-  <a class="social-btn instagram" href="https://www.instagram.com/initforthedough/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Instagram">
-    <!-- Instagram icon -->
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.5a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm5.5-3a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
-    </svg>
-    <span class="sr-only">Instagram</span>
-  </a>
+    <!-- Facebook link with icon -->
+    <a class="social-btn facebook" href="https://www.facebook.com/lorielovesbaking" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook">
+      <!-- Facebook icon SVG -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.1V12h2.1V9.6c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/>
+      </svg>
+      <span class="sr-only">Facebook</span>
+    </a>
+  </div>
 
-  <a class="social-btn facebook" href="https://www.facebook.com/lorielovesbaking" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook">
-    <!-- Facebook icon -->
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M22 12a10 10 0 1 0-11.5 9.9v-7h-2.1V12h2.1V9.6c0-2.1 1.3-3.3 3.2-3.3.9 0 1.8.1 1.8.1v2h-1c-1 0-1.3.6-1.3 1.2V12h2.3l-.4 2.9h-1.9v7A10 10 0 0 0 22 12z"/>
-    </svg>
-    <span class="sr-only">Facebook</span>
-  </a>
-</div>
+  <!-- ====================================================================
+       CONTACT FORM — Email submission form
+       
+       HOW THIS WORKS:
+       - Form fields collect: name, phone, email, message
+       - Form ID: contactForm (referenced in scripts.js)
+       - Status message display: formStatus (shows success/error feedback)
+       - Emails are sent via EmailJS service (configured in scripts.js)
+       
+       TO CUSTOMIZE:
+       - Add/remove form fields (but update scripts.js too)
+       - Change label text and placeholder text as needed
+       - Form styling is in css/styles.css (.contact-container form)
+       ===================================================================== -->
+  <form id="contactForm">
+    <!-- Name field -->
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" placeholder="Name" required>
 
+    <!-- Phone number field -->
+    <label for="phone">Phone Number</label>
+    <input type="tel" name="phone" id="phone" placeholder="Phone Number" required>
 
-<!-- Contact form (id="contactForm") — EmailJS integration configured in js/scripts.js -->
-<form id="contactForm">
-<label for="name">Name</label>
-<input type="text" name="name" placeholder="Name" required>
+    <!-- Email field -->
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" placeholder="Email" required>
 
-<label for="phone">Phone Number</label>
-<input type="tel" name="phone" placeholder="Phone Number" required>
+    <!-- Message field -->
+    <label for="message">Questions or custom requests</label>
+    <textarea name="message" id="message" placeholder="Message" rows="5" required></textarea>
 
-<label for="email">Email</label>
-<input type="email" name="email" placeholder="Email" required>
+    <!-- Submit button -->
+    <button type="submit">Send Message</button>
+  </form>
 
-<label for="message">Questions or custom requests</label>
-<textarea name="message" placeholder="Message" rows="5" required></textarea>
-
-<button type="submit">Send Message</button>
-</form>
-
-
-<p class="form-status" id="formStatus"></p>
+  <!-- Status message — displays after form submission (success or error) -->
+  <!-- This element is updated by JavaScript in scripts.js -->
+  <p class="form-status" id="formStatus"></p>
 </main>
 
-
-<script src="js/scripts.js"></script>
+<!-- ====================================================================
+     FOOTER — Site footer
+     ===================================================================== -->
 <footer class="footer">
   <p>© 2026 In It for the Dough · Custom baked goods made with love</p>
 </footer>
+
+<!-- ====================================================================
+     SCRIPTS — Load JavaScript for form and other features
+     ===================================================================== -->
+<script src="js/scripts.js"></script>
 </body>
 </html>
