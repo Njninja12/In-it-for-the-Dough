@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - In It for the Dough</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    
+
+<header class="navbar">
+    <img src="assets/InitfortheDoughLogo.png" alt="In It for the Dough Logo" class="logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="items.html">What I Bake</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+</header>
+
+<main class="gallery-container">
+  <div class="section-head">
+    <h2>Gallery</h2>
+    <p class="muted">A rotating collection of customs, seasonal bakes, and favorites.</p>
+  </div>
+
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- Add / remove images anytime -->
+    <figure class="gallery-item">
+      <img src="assets/gallery/breads.jpg" alt="Fresh baked breads" loading="lazy">
+      <figcaption>Breads</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/whitebread.jpg" alt="White bread loaves" loading="lazy">
+      <figcaption>White Bread</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/cinnamonrolls.jpg" alt="Cinnamon rolls with frosting" loading="lazy">
+      <figcaption>Cinnamon Rolls</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/brownies.jpg" alt="Fudgy brownies" loading="lazy">
+      <figcaption>Brownies</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/ChocolateChip.jpg" alt="Chocolate chip cookies" loading="lazy">
+      <figcaption>Chocolate Chip Cookies</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/SugarCookies.jpg" alt="Decorated sugar cookies" loading="lazy">
+      <figcaption>Decorated Sugar Cookies</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/poppyseed.jpg" alt="Lemon poppyseed loaf" loading="lazy">
+      <figcaption>Lemon Poppyseed</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/macadamia.jpg" alt="White chocolate macadamia cookies" loading="lazy">
+      <figcaption>Macadamia Cookies</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/chocchipbread.jpg" alt="Chocolate chip bread loaf" loading="lazy">
+      <figcaption>Chocolate Chip Bread</figcaption>
+    </figure>
+
+    <figure class="gallery-item">
+      <img src="assets/gallery/croissants.jpg" alt="Croissants" loading="lazy">
+      <figcaption>Croissants</figcaption>
+    </figure>
+  </div>
+</main>
+
+<!-- Lightbox modal -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Close image">✕</button>
+  <img class="lightbox-img" id="lightboxImg" alt="">
+  <p class="lightbox-caption" id="lightboxCaption"></p>
+</div>
+
+<footer class="footer">
+  <p>© 2026 In It for the Dough</p>
+</footer>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>

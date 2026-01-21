@@ -13,9 +13,10 @@
 <header class="navbar">
 <img src="assets/InitfortheDoughLogo.png" alt="In It for the Dough Logo" class="logo">
 <nav>
-<a href="index.html">Home</a>
-<a href="items.html">What I Bake</a>
-<a href="contact.html">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="items.html">What I Bake</a>
+  <a href="gallery.html">Gallery</a>
+  <a href="contact.html">Contact</a>
 </nav>
 </header>
 
@@ -36,6 +37,36 @@ I truly love baking and feeding people — let me feed you! You won’t be disap
 <a href="items.html" class="btn large">What I Bake</a>
 <a href="contact.html" class="btn secondary large">Contact Me</a>
 </div>
+</section>
+
+<section class="featured-strip">
+    <div class="section-head">
+        <h2>Featured Bakes</h2>
+        <p class="muted">A few favorites - swipe/scroll to see more.</p>
+    </div>
+
+    <div class="image-scroller" aria-label="Feature bakes scroller">
+        <button class="scroll-btn left" type="button" data-scroll="left" aria-label="Scroll left">
+            <
+        </button>
+
+        <div class="image-scroller" id="featuredScroller" tabindex="0">
+            <img src="assets/gallery/Breads.jpg" alt="Fresh baked breads" loading="lazy">
+            <img src="assets/gallery/CinnamonRolls.jpg" alt="Cinnamon rolls with icing" loading="lazy">
+            <img src="assets/gallery/ChocolateChip.jpg" alt="Chocolate chip cookies" loading="lazy">
+            <img src="assets/gallery/PeanutButter.jpg" alt="Peanutbutter blossoms" loading="lazy">
+            <img src="assets/gallery/Poppyseed.jpg" alt="Lemon poppyseed bread" loading="lazy">
+            <img src="assets/gallery/Croissants.jpg" alt="Croissants" loading="lazy">
+            <img src="assets/gallery/SugarCookies.jpg" alt="Sugar cookies" loading="lazy">
+        </div>
+        <button class="scroll-btn right" type="button" data-scroll="right" aria-label="Scroll right">
+            >
+        </button>
+    </div>
+
+    <div class="strip-cta">
+        <a class="btn secondary" href="gallery.html">View Full Gallery</a>
+    </div>
 </section>
 
 

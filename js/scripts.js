@@ -358,3 +358,117 @@ if (contactForm) {
       });
   });
 }
+
+
+/* =========================
+   HOME: Featured auto-scroller + manual buttons
+========================= */
+(function setupFeaturedScroller() {
+  const scroller = document.getElementById("featuredScroller");
+  if (!scroller) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let isPaused = false;
+  let direction = 1; // 1 = right, -1 = left
+  let rafId = null;
+
+  const step = () => {
+    if (!isPaused) {
+      scroller.scrollLeft += 0.6 * direction;
+
+      const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
+      const atStart = scroller.scrollLeft <= 2;
+
+      if (atEnd) direction = -1;
+      if (atStart) direction = 1;
+    }
+    rafId = requestAnimationFrame(step);
+  };
+
+  const pause = () => { isPaused = true; };
+  const resume = () => { isPaused = false; };
+
+  // Pause on hover/focus (nice UX)
+  scroller.addEventListener("mouseenter", pause);
+  scroller.addEventListener("mouseleave", resume);
+  scroller.addEventListener("focusin", pause);
+  scroller.addEventListener("focusout", resume);
+
+  // If user touches/drags, pause for a moment
+  let resumeTimer = null;
+  const pauseBriefly = () => {
+    pause();
+    clearTimeout(resumeTimer);
+    resumeTimer = setTimeout(resume, 1200);
+  };
+  scroller.addEventListener("touchstart", pauseBriefly, { passive: true });
+  scroller.addEventListener("wheel", pauseBriefly, { passive: true });
+
+  // Manual buttons
+  document.querySelectorAll("[data-scroll]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      pauseBriefly();
+      const dir = btn.dataset.scroll === "left" ? -1 : 1;
+      const amount = Math.round(scroller.clientWidth * 0.75) * dir;
+      scroller.scrollBy({ left: amount, behavior: "smooth" });
+    });
+  });
+
+  // Start auto-scroll unless reduced motion
+  if (!prefersReducedMotion) {
+    rafId = requestAnimationFrame(step);
+  }
+})();
+
+
+/* =========================
+   GALLERY: Lightbox
+========================= */
+(function setupGalleryLightbox() {
+  const grid = document.getElementById("galleryGrid");
+  const lightbox = document.getElementById("lightbox");
+  const imgEl = document.getElementById("lightboxImg");
+  const capEl = document.getElementById("lightboxCaption");
+  const closeBtn = document.getElementById("lightboxClose");
+
+  if (!grid || !lightbox || !imgEl || !capEl || !closeBtn) return;
+
+  const open = (src, alt, caption) => {
+    imgEl.src = src;
+    imgEl.alt = alt || "";
+    capEl.textContent = caption || "";
+    lightbox.classList.add("is-open");
+    lightbox.setAttribute("aria-hidden", "false");
+  };
+
+  const close = () => {
+    lightbox.classList.remove("is-open");
+    lightbox.setAttribute("aria-hidden", "true");
+    imgEl.src = "";
+    capEl.textContent = "";
+  };
+
+  grid.addEventListener("click", (e) => {
+    const figure = e.target.closest(".gallery-item");
+    if (!figure) return;
+
+    const img = figure.querySelector("img");
+    const cap = figure.querySelector("figcaption");
+    if (!img) return;
+
+    open(img.src, img.alt, cap ? cap.textContent : "");
+  });
+
+  closeBtn.addEventListener("click", close);
+
+  // click outside image closes
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) close();
+  });
+
+  // ESC closes
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("is-open")) close();
+  });
+})();
