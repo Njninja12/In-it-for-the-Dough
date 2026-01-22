@@ -435,86 +435,18 @@ if (contactForm) {
 
 
 /* ====================================================================
-   4. FEATURED SCROLLER — Auto-Scrolling Carousel (Home Page)
+   4. FEATURED PHOTOS — Static Featured Images (Home Page)
    ====================================================================
    
    WHAT IT DOES:
-   - Automatically scrolls through featured bake images
-   - User can manually scroll or click left/right buttons
-   - Pauses scrolling on hover/focus or when user interacts
-   - Respects "prefers-reduced-motion" accessibility setting
+   - Displays 3-4 featured photos in a responsive grid
+   - Adds hover effects for interactivity
+   - No auto-scrolling - static display
    
    WHERE IT'S USED:
-   - index.html - Featured Bakes section
-   
-   HOW IT WORKS:
-   - Smooth horizontal scrolling animation
-   - Reverses direction at start/end (bounces back)
-   - Manual buttons let users jump through images
+   - index.html - Featured Bakes section grid
 ==================================================================== */
-(function setupFeaturedScroller() {
-  // Get the scroller element from the HTML
-  const scroller = document.getElementById("featuredScroller");
-  if (!scroller) return; // Exit if scroller not found
-
-  // Check if user prefers reduced motion (accessibility)
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Variables to control scrolling behavior
-  let isPaused = false; // Whether scrolling is paused
-  let direction = 1; // 1 = scroll right, -1 = scroll left
-  let rafId = null; // Animation frame ID
-
-  // Animation function - runs every frame to scroll
-  const step = () => {
-    if (!isPaused) {
-      scroller.scrollLeft += 0.6 * direction; // Move scroll position
-
-      // Check if we hit the end and need to reverse direction
-      const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
-      const atStart = scroller.scrollLeft <= 2;
-
-      if (atEnd) direction = -1; // Reached end, scroll back
-      if (atStart) direction = 1; // Reached start, scroll forward
-    }
-    rafId = requestAnimationFrame(step); // Continue animation
-  };
-
-  // Helper functions to pause/resume scrolling
-  const pause = () => { isPaused = true; };
-  const resume = () => { isPaused = false; };
-
-  // Pause scrolling when user hovers or focuses on scroller
-  scroller.addEventListener("mouseenter", pause);
-  scroller.addEventListener("mouseleave", resume);
-  scroller.addEventListener("focusin", pause);
-  scroller.addEventListener("focusout", resume);
-
-  // If user manually scrolls/touches, pause briefly then resume
-  let resumeTimer = null;
-  const pauseBriefly = () => {
-    pause();
-    clearTimeout(resumeTimer);
-    resumeTimer = setTimeout(resume, 1200); // Resume after 1.2 seconds
-  };
-  scroller.addEventListener("touchstart", pauseBriefly, { passive: true });
-  scroller.addEventListener("wheel", pauseBriefly, { passive: true });
-
-  // Handle manual scroll buttons (left/right arrows)
-  document.querySelectorAll("[data-scroll]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      pauseBriefly(); // Pause auto-scroll briefly
-      const dir = btn.dataset.scroll === "left" ? -1 : 1; // Get direction from button
-      const amount = Math.round(scroller.clientWidth * 0.75) * dir; // Scroll 75% of width
-      scroller.scrollBy({ left: amount, behavior: "smooth" }); // Smooth scroll
-    });
-  });
-
-  // Start auto-scroll animation (unless user prefers reduced motion)
-  if (!prefersReducedMotion) {
-    rafId = requestAnimationFrame(step);
-  }
-})();
+/* No JavaScript needed - featured images are static grid */
 
 
 /* ====================================================================

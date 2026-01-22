@@ -49,41 +49,24 @@ I truly love baking and feeding people — let me feed you! You won't be disappo
 <section class="featured-strip">
     <div class="section-head">
         <h2>Featured Bakes</h2>
-        <p class="muted">A few favorites - swipe/scroll to see more.</p>
+        <p class="muted">A few of our favorites.</p>
     </div>
 
     <!-- ====================================================================
-         FEATURED BAKES CAROUSEL — Auto-scrolling image carousel
-         Classes: .featured-strip (container), .image-scroller (scrollable area)
-         Controlled by JavaScript in js/scripts.js — setupFeaturedScroller()
+         FEATURED PHOTOS GRID — Static display of 3-4 top photos
+         Classes: .featured-strip (container), .featured-grid (grid)
          
          HOW TO EDIT:
-         - Add/remove images in the .image-scroller div (the second one, with id="featuredScroller")
+         - Add/remove images in the .featured-grid div below
          - Images should be in assets/gallery/ folder
          - Edit img alt text for accessibility and SEO
          ===================================================================== -->
-    <div class="scroller-wrap">
-        <!-- Left scroll button — users can click to scroll left -->
-        <button class="scroll-btn left" type="button" data-scroll="left" aria-label="Scroll left">
-            <
-        </button>
-
-        <!-- Image carousel container — scrolls left/right with keyboard/mouse/touch -->
-        <div class="image-scroller" id="featuredScroller" tabindex="0">
-            <!-- Add/remove images here to change featured bakes -->
-            <img src="assets/gallery/Breads.jpg" alt="Fresh baked breads" loading="lazy">
-            <img src="assets/gallery/CinnamonRolls.jpg" alt="Cinnamon rolls with icing" loading="lazy">
-            <img src="assets/gallery/ChocolateChip.jpg" alt="Chocolate chip cookies" loading="lazy">
-            <img src="assets/gallery/PeanutButter.jpg" alt="Peanutbutter blossoms" loading="lazy">
-            <img src="assets/gallery/Poppyseed.jpg" alt="Lemon poppyseed bread" loading="lazy">
-            <img src="assets/gallery/Croissants.jpg" alt="Croissants" loading="lazy">
-            <img src="assets/gallery/SugarCookies.jpg" alt="Sugar cookies" loading="lazy">
-        </div>
-
-        <!-- Right scroll button — users can click to scroll right -->
-        <button class="scroll-btn right" type="button" data-scroll="right" aria-label="Scroll right">
-            >
-        </button>
+    <!-- Featured photos grid — static display of 3-4 top photos -->
+    <div class="featured-grid">
+        <img src="assets/gallery/Breads.jpg" alt="Fresh baked breads" loading="lazy">
+        <img src="assets/gallery/CinnamonRolls.jpg" alt="Cinnamon rolls with icing" loading="lazy">
+        <img src="assets/gallery/ChocolateChip.jpg" alt="Chocolate chip cookies" loading="lazy">
+        <img src="assets/gallery/PeanutButter.jpg" alt="Peanutbutter blossoms" loading="lazy">
     </div>
 
     <!-- Call-to-action to view the full gallery -->

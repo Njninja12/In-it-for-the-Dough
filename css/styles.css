@@ -579,7 +579,7 @@ footer a:hover {
 
 
 /* ====================================================================
-   9. FEATURED IMAGE SCROLLER — Home Page Carousel
+   9. FEATURED PHOTOS GRID — Home Page Featured Images
 ==================================================================== */
 /* Featured section container */
 .featured-strip {
@@ -593,72 +593,33 @@ footer a:hover {
   margin-bottom: 0.25rem;
 }
 
-/* Image scroller wrapper */
-.scroller-wrap {
-  position: relative;
+/* Featured photos grid — responsive grid of static images */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive columns */
+  gap: 1.5rem;
   margin-top: 1rem;
 }
 
-/* Horizontal scrolling container */
-.image-scroller {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto; /* Allow horizontal scroll */
-  scroll-behavior: smooth; /* Smooth scrolling */
-  padding: 0.75rem 2.75rem; /* Space for buttons */
-  border-radius: 16px;
-  background: #fff7f2; /* Warm background */
-  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
-  scrollbar-width: none; /* Hide scrollbar */
-}
-
-.image-scroller::-webkit-scrollbar {
-  display: none; /* Hide scrollbar on Chrome */
-}
-
-/* Images inside scroller */
-.image-scroller img {
-  height: 140px;
-  width: 220px;
+/* Images in featured grid */
+.featured-grid img {
+  width: 100%;
+  height: 220px;
   object-fit: cover; /* Crop to fit */
   border-radius: 14px;
-  flex: 0 0 auto; /* Don't shrink */
-  user-select: none; /* Can't select image */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Scroll buttons (left/right arrows) */
-.scroll-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 44px;
-  width: 44px;
-  border: none;
-  border-radius: 999px;
-  font-size: 26px;
-  font-weight: 900;
-  cursor: pointer;
-  background: rgba(255,255,255,0.9);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  z-index: 2;
+/* Hover effect on images */
+.featured-grid img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.scroll-btn.left {
-  left: 8px; /* Left button position */
-}
-
-.scroll-btn.right {
-  right: 8px; /* Right button position */
-}
-
-/* Button click animation */
-.scroll-btn:active {
-  transform: translateY(-50%) scale(0.98); /* Shrink on click */
-}
-
-/* CTA below scroller */
+/* CTA below images */
 .strip-cta {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
 
 
